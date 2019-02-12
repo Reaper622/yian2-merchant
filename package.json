@@ -1,7 +1,7 @@
 {
   "name": "yian2merchant",
   "version": "1.0.0",
-  "description": "A parttimejob web a[Cp[Cp[C's merchant",
+  "description": "A parttimejob web app's merchant client",
   "author": "libowen <1064416560@qq.com>",
   "private": true,
   "scripts": {
@@ -11,8 +11,19 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
+    "better-scroll": "^1.13.2",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "fastclick": "^1.0.6",
+    "mobile-select": "^1.1.2",
+    "qs": "^6.5.2",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "vue-awesome-swiper": "^2.6.7",
+    "vue2-layer-mobile": "^1.0.4",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
