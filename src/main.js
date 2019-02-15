@@ -4,7 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 // 引入reset.css
-import './assets/styles/reset.css'
+import '@/assets/styles/reset.css'
+// 引入iconfont的通用样式
+import '@/assets/styles/iconfontCommon.css'
 
 Vue.config.productionTip = false
 

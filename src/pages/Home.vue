@@ -2,7 +2,7 @@
   <div class="main">
     <m-header
       :title="title"
-      :isBack="false"></m-header>
+      :isBack="true"></m-header>
   </div>
 </template>
 

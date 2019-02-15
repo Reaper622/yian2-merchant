@@ -1,5 +1,10 @@
 <template>
   <div class="header">
+    <p class="backIcon" v-show="isBack">
+    <svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-fanhui"></use>
+    </svg>
+    </p>
     <span class="title">{{title}}</span>
   </div>
 </template>
@@ -31,4 +36,8 @@ export default {
   .title
     font-size 0.48rem
     width 0.96rem
+  .backIcon
+    position absolute
+    font-size 0.48rem
+    float left
 </style>
