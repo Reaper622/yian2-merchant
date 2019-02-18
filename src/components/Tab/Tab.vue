@@ -1,5 +1,5 @@
 <template>
-  <div class="tab-container">
+  <div class="wrapper">
     <div class="tab">
       <router-link tag="div" class="tab-item" to="/home">
         <span class="tab-title">首页</span>
@@ -23,7 +23,7 @@ export default {
 
 <style lang="stylus" scoped>
   @import "~@/assets/styles/varibles.styl"
-  .tab-container
+  .wrapper
     position fixed
     bottom 0
     width 100%

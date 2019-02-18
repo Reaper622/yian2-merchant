@@ -1,6 +1,6 @@
 <template>
-  <div class="header">
-    <p class="backIcon" v-show="isBack">
+  <div class="wrapper">
+    <p class="backIcon" v-show="isBack" @click="backRouter">
       <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-fanhui"></use>
       </svg>
@@ -21,13 +21,23 @@ export default {
     isBack: {
       type: Boolean
     }
+  },
+  methods: {
+    backRouter () {
+      if (window.history.length <= 1) {
+        this.$router.push('/')
+        return false
+      } else {
+        this.$router.go(-1)
+      }
+    }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
   @import '~@/assets/styles/varibles.styl'
-  .header
+  .wrapper
     line-height $headerHeight
     background $bgColor
     color #ffffff

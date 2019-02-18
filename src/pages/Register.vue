@@ -140,7 +140,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '~styles/varibles'
+@import '~@/assets/styles/varibles'
   input::-webkit-input-placeholder{
     color: $color-input-grey
   }

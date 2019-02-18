@@ -6,7 +6,7 @@
     <swiper :swiperList="swiperListDemo"></swiper>
     <div class="menu">
       <div class="menu-lane">
-        <router-link to="/publish">
+        <router-link to="/parttimejob/publish">
           <div class="menu-item">
             <p class="menu-icon">
               <svg class="icon" aria-hidden="true">
@@ -92,8 +92,10 @@ export default {
         display inline-block
         width 3rem
         height 3rem
-        background $color-theme
         border-radius .1rem
+        margin-left .2rem
+        margin-right .2rem
+        background-color $color-theme
         .icon
           width 1rem
           height 1rem
