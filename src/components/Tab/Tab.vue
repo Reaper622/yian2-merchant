@@ -24,7 +24,7 @@ export default {
 <style lang="stylus" scoped>
   @import "~@/assets/styles/varibles.styl"
   .tab-container
-    position absolute
+    position fixed
     bottom 0
     width 100%
     .tab

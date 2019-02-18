@@ -1,9 +1,9 @@
 <template>
   <div class="header">
     <p class="backIcon" v-show="isBack">
-    <svg class="icon" aria-hidden="true">
-      <use xlink:href="#icon-fanhui"></use>
-    </svg>
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-fanhui"></use>
+      </svg>
     </p>
     <span class="title">{{title}}</span>
   </div>
