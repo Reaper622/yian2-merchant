@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <m-header
-      :title="title"
+      :title="'首页'"
       :isBack="true"></m-header>
     <swiper :swiperList="swiperListDemo"></swiper>
     <div class="menu">
@@ -16,7 +16,7 @@
             <p class="menu-title">发布兼职</p>
           </div>
         </router-link>
-        <router-link to="/draftBox">
+        <router-link to="/parttimejob/draftBox">
           <div class="menu-item">
             <p class="menu-icon">
               <svg class="icon" aria-hidden="true">
@@ -60,7 +60,6 @@ export default {
   name: 'Home',
   data () {
     return {
-      title: '首页',
       swiperListDemo: [{
         id: '0001',
         imgUrl: 'https://image.ganjistatic1.com/gjfsqq/097136cab4dc4fe4943b1a03e7f2db68_0-0_7-5.png'

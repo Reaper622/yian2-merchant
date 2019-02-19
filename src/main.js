@@ -22,7 +22,7 @@ Vue.use(layer)
 fasClick.attach(document.body)
 
 // 设置Axios默认请求头
-Axios.defaults.baseURL = 'http://www.equator8848.xyz:8080/yian/merchant'
+Axios.defaults.baseURL = 'http://www.equator8848.xyz:8080/yian2/merchant'
 // 设置Axios携带凭证Cookie
 Axios.defaults.withCredentials = true
 Vue.prototype.$axios = Axios

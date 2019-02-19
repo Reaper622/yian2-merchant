@@ -69,23 +69,16 @@ export default {
     },
     sendInfoSucc (res) {
       sessionStorage.setItem('uid', this.uid)
-      if (res.data.msg === '2') {
+      if (res.data.status === 2000) {
         this.$layer.closeAll()
         this.$layer.msg('登录成功')
-        console.log(res.data.msg, '商家')
-        this.$router.replace('/merchant')
-      } else if (res.data.msg === '1') {
-        this.$layer.closeAll()
-        this.$layer.msg('登录成功')
-        console.log(res.data.msg, '学生')
-        this.$router.replace('/')
+        this.$router.replace('/home')
       } else {
         this.$layer.closeAll()
-        this.$layer.msg('登录失败')
+        this.$layer.msg(res.data.msg)
       }
     },
     savePsw () {
-      console.log(1)
       window.localStorage.setItem('isSave', this.isRememberPsw)
       window.localStorage.setItem('uid', this.list.uid)
       window.localStorage.setItem('psw', this.list.psw)
