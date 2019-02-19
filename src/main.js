@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import fasClick from 'fastclick'
+import createStore from './store'
 import Axios from 'axios'
 // 引入reset.css
 import '@/assets/styles/reset.css'
@@ -20,6 +21,8 @@ Vue.config.productionTip = false
 Vue.use(VueAwesomeSwiper)
 Vue.use(layer)
 fasClick.attach(document.body)
+// 创建一个Vuex Store对象
+const store = createStore()
 
 // 设置Axios默认请求头
 Axios.defaults.baseURL = 'http://www.equator8848.xyz:8080/yian2/merchant'
@@ -30,5 +33,6 @@ Vue.prototype.$axios = Axios
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 })
