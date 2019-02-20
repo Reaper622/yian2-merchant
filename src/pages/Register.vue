@@ -5,10 +5,10 @@
     </div>
     <div class="input-wrapper">
       <input class="input" v-model="list.uid" type="text" placeholder="输入邮箱地址作为账号" @blur="checkEmail">
-      <input class="input" v-model="list.ps" type="password" placeholder="请设置密码(6-16位)" @blur="checkPs">
-      <input class="input" v-model="list.psw" type="password" placeholder="请确认密码" @blur="checkPsw">
+      <input class="input" v-model="list.psw" type="password" placeholder="请设置密码(6-16位)" @blur="checkPsw">
+      <input class="input" v-model="list.rePsw" type="password" placeholder="请确认密码" @blur="checkRePsw">
       <input class="input code-input" v-model="list.authCode" type="text" placeholder="请输入验证码">
-      <div class="code" @click="sendCode" ref="text">点击获取验证码</div>
+      <div class="code" @click="flag && sendCode()" ref="text">点击获取验证码</div>
     </div>
     <div class="login-button" @click="sendInfo">注册</div>
     <!-- <div class="footer-info">
@@ -33,51 +33,57 @@ export default {
   name: 'Register',
   data () {
     return {
-      list: [{
+      list: {
         uid: '',
-        ps: '',
         psw: '',
-        authCode: '',
-        userType: ''
-      }]
+        rePsw: '',
+        authCode: ''
+      },
+      flag: true
     }
   },
   methods: {
     sendInfo () {
-      if (this.list.uid && this.list.ps && this.list.psw && this.list.authCode && this.list.userType) {
+      if (this.list.uid && this.list.psw && this.list.rePsw && this.list.authCode) {
         console.log(this.list)
-        this.$axios.post('/account/register.do', qs.stringify({
-          uid: this.list.uid,
-          psw: this.list.psw,
-          authCode: this.list.authCode,
-          userType: this.list.userType
-        }), {
-          withCredentials: true
-        })
+        this.$axios.post('/merchant/account/register.do', qs.stringify({
+          userId: this.list.uid,
+          pwd: this.list.psw,
+          authCode: this.list.authCode
+        }))
           .then(this.sendInfoSucc)
       } else {
         this.$layer.closeAll()
-        this.$layer.msg('输入框不能为空')
+        this.$layer.msg('请完善注册信息')
       }
     },
     sendInfoSucc (res) {
-      console.log(res.data.msg)
-      this.$layer.closeAll()
-      this.$layer.msg(res.data.msg)
+      if (res.data.status === 2000) {
+        this.$layer.closeAll()
+        this.$layer.msg(res.data.msg)
+      } else if (res.data.status === 4001) {
+        this.$layer.closeAll()
+        this.$layer.msg(res.data.msg)
+      } else {
+        console.log(res)
+      }
     },
     time () {
+      this.flag = false
+      clearInterval(this.timer)
       let _this = this
-      let wait = 60
+      let wait = 59
       if (wait === 0) {
         this.$refs.text.innerText = '点击获取验证码'
-        wait = 60
+        wait = 59
       } else {
-        let s = setInterval(function () {
+        this.timer = setInterval(function () {
           _this.$refs.text.innerText = wait + '秒后再次获取'
           wait--
           if (wait === 0) {
+            _this.flag = true
             _this.$refs.text.innerText = '点击获取验证码'
-            clearInterval(s)
+            clearInterval(_this.timer)
           }
         }, 1000)
       }
@@ -85,11 +91,9 @@ export default {
     sendCode () {
       let email = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g// eslint-disable-line
       if (email.test(this.list.uid)) {
-        console.log(this.list.uid)
         this.time()
-        this.$axios.post('/account/verificationEmail.do', qs.stringify({
-          uid: this.list.uid,
-          action: '0'
+        this.$axios.post('/email/register.do', qs.stringify({
+          emailAddress: this.list.uid
         }))
           .then((res) => {
             if (res.data.status === 1) {
@@ -99,42 +103,58 @@ export default {
           })
       } else {
         this.$layer.closeAll()
-        this.$layer.msg('账号不符标准')
+        this.$layer.msg('请输入正确的邮箱')
         return false
       }
     },
     checkEmail () {
-      let email = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g// eslint-disable-line
-      if (email.test(this.list.uid)) {
-        this.$axios.post('/account/checkAccountIsExist.do', qs.stringify({
-          uid: this.list.uid
-        }))
-          .then((res) => {
-            this.$layer.closeAll()
-            this.$layer.msg(res.data.msg)
-          })
+      if (this.list.uid) {
+        let email = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g// eslint-disable-line
+        if (email.test(this.list.uid)) {
+          this.$axios.post('/merchant/account/checkAccountIsExist.do', qs.stringify({
+            uid: this.list.uid
+          }))
+            .then((res) => {
+              if (res.data.status === 4003) {
+                this.$layer.closeAll()
+                this.$layer.msg(res.data.msg)
+              }
+            })
+          return true
+        } else {
+          this.$layer.closeAll()
+          this.$layer.msg('账号不符合规则')
+          return false
+        }
       } else {
-        this.$layer.closeAll()
-        this.$layer.msg('账号不符合规则')
         return false
       }
     },
-    checkPs () {
-      if (this.list.ps) {
-        if (this.list.ps.length < 6 || this.list.ps.length > 16) {
+    checkPsw () {
+      if (this.list.psw) {
+        if (this.list.psw.length < 6) {
           this.$layer.closeAll()
-          this.$layer.msg('密码不符合规则')
+          this.$layer.msg('密码不能少于6位')
           return false
         }
+        if (this.list.psw.length > 16) {
+          this.$layer.closeAll()
+          this.$layer.msg('密码不能多于16位')
+          return false
+        }
+        return true
       }
     },
-    checkPsw () {
-      if (this.list.ps !== '' && this.list.psw != '' && this.list.psw !== this.list.ps) {// eslint-disable-line
+    checkRePsw () {
+      if (this.list.psw !== '' && this.list.rePsw != '' && this.list.rePsw !== this.list.psw) {// eslint-disable-line
         this.$layer.closeAll()
         this.$layer.msg('两次密码输入不一致')
         return false
       }
     }
+  },
+  mounted () {
+
   }
 }
 </script>
@@ -197,4 +217,6 @@ export default {
     text-align center
     margin-top 1.2rem
     color $color-input-grey-d
+  #trigger1
+    display none
 </style>

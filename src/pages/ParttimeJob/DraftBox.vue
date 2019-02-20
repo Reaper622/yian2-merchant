@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     getDrafts (index) {
-      this.$axios.post('job/getJobsByStatus.do', {
+      this.$axios.post('/merchant/job/getJobsByStatus.do', {
       })
     }
   }

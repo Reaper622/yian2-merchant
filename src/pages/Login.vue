@@ -57,7 +57,7 @@ export default {
         if (this.isRememberPsw) {
           this.savePsw()
         }
-        this.$axios.post('/account/login.do', qs.stringify({
+        this.$axios.post('/merchant/account/login.do', qs.stringify({
           uid: this.list.uid,
           psw: this.list.psw
         }))

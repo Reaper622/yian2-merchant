@@ -107,7 +107,7 @@ export default {
       let _this = this
       if (this.list.jobSummary && this.list.jobTime && this.list.reward && this.list.rewardType && this.list.address &&
       this.list.details && this.list.jobType && this.list.hireNum && this.list.schoolId) {
-        this.$axios.post('/job/dealJob.do', qs.stringify({
+        this.$axios.post('/merchant/job/dealJob.do', qs.stringify({
           action: actionNum,
           jobSummary: this.list.jobSummary,
           jobTime: this.list.jobTime,
