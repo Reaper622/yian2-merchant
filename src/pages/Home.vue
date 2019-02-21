@@ -2,7 +2,7 @@
   <div class="main">
     <m-header
       :title="'首页'"
-      :isBack="true"></m-header>
+      :isBack="false"></m-header>
     <swiper :swiperList="swiperListDemo"></swiper>
     <div class="menu">
       <div class="menu-lane">
@@ -16,7 +16,7 @@
             <p class="menu-title">发布兼职</p>
           </div>
         </router-link>
-        <router-link to="/parttimejob/draftBox">
+        <router-link to="/parttimejob/draftbox">
           <div class="menu-item">
             <p class="menu-icon">
               <svg class="icon" aria-hidden="true">
@@ -28,7 +28,7 @@
         </router-link>
       </div>
       <div class="menu-lane">
-        <router-link to="myParttimejob">
+        <router-link to="/parttimejob/myParttimejob">
           <div class="menu-item">
             <p class="menu-icon">
               <svg class="icon" aria-hidden="true">
