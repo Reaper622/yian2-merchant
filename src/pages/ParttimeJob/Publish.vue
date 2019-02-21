@@ -64,46 +64,44 @@ export default {
       list: {
         jobSummary: '',
         jobTime: '',
-        reward: '',
-        rewardType: '',
+        reward: null,
+        rewardType: null,
         address: '',
         details: '',
-        jobType: '',
-        hireNum: '',
-        schoolId: ''
-      }
+        jobType: null,
+        hireNum: null,
+        schoolId: null
+      },
+      typeList: []
     }
   },
   components: {
     MHeader
   },
   mounted () {
+    this.getParttimeJobType()
     let _this = this
     let mobileSelect4 = new MobileSelect({// eslint-disable-line
       trigger: '#trigger4',
       title: '选择报酬类型',
       wheels: [
-        {data: ['小时', '天', '月']}
+        {
+          data: [
+            {id: 0, value: '小时'},
+            {id: 1, value: '天'},
+            {id: 2, value: '月'}
+          ]
+        }
       ],
       callback: function (indexArr, data) {
-        console.log(data)
-        _this.list.rewardType = indexArr[0]
-      }
-    })
-    let mobileSelect5 = new MobileSelect({// eslint-disable-line
-      trigger: '#trigger5',
-      title: '选择兼职类型',
-      wheels: [
-        {data: ['其它', '家教', '服务员', '接待员', '安保人员', '推广促销', '翻译', '话务员', '实习生', '收银员']}
-      ],
-      callback: function (indexArr, data) {
-        console.log(indexArr, data)
-        _this.list.jobType = data[0]
+        console.log(data[0])
+        _this.list.rewardType = data[0].id
       }
     })
   },
   methods: {
     publish (actionNum) {
+      console.log(this.list)
       let _this = this
       if (this.list.jobSummary && this.list.jobTime && this.list.reward && this.list.rewardType && this.list.address &&
       this.list.details && this.list.jobType && this.list.hireNum && this.list.schoolId) {
@@ -111,13 +109,13 @@ export default {
           action: actionNum,
           jobSummary: this.list.jobSummary,
           jobTime: this.list.jobTime,
-          reward: this.list.reward,
+          reward: parseInt(this.list.reward),
           rewardType: this.list.rewardType,
           address: this.list.address,
           details: this.list.details,
           jobType: this.list.jobType,
-          hireNum: this.list.hireNum,
-          schoolId: this.list.schoolId
+          hireNum: parseInt(this.list.hireNum),
+          schoolId: parseInt(this.list.schoolId)
         }))
           .then(res => {
             if (res.data.status === 1) {
@@ -125,12 +123,37 @@ export default {
               _this.$layer.msg(res.data.msg)
               // 当前为首页，后期改为我的兼职
               _this.$router.replace('/home')
+            } else {
+              _this.$layer.closeAll()
+              _this.$layer.msg(res.data.msg)
             }
           })
       } else {
         this.$layer.closeAll()
         this.$layer.msg('填写不符合标准')
       }
+    },
+    // 请求兼职类型以及其对应的代码
+    getParttimeJobType () {
+      let _this = this
+      this.$axios.post('/jobTypeList/getJobTypeListWithoutIcon.do')
+        .then(res => {
+          let mobileSelect5 = new MobileSelect({// eslint-disable-line
+            trigger: '#trigger5',
+            title: '选择兼职类型',
+            wheels: [
+              {data: res.data.data.list}
+            ],
+            keyMap: {
+              id: 'id',
+              value: 'name'
+            },
+            callback: function (indexArr, data) {
+              console.log(indexArr, data[0])
+              _this.list.jobType = data[0].id
+            }
+          })
+        })
     }
   }
 }

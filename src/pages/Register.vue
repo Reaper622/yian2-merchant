@@ -47,7 +47,7 @@ export default {
       if (this.list.uid && this.list.psw && this.list.rePsw && this.list.authCode) {
         console.log(this.list)
         this.$axios.post('/merchant/account/register.do', qs.stringify({
-          userId: this.list.uid,
+          uid: this.list.uid,
           pwd: this.list.psw,
           authCode: this.list.authCode
         }))
@@ -155,6 +155,9 @@ export default {
   },
   mounted () {
 
+  },
+  beforeDestroy () {
+    clearInterval(this.timer)
   }
 }
 </script>
