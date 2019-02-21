@@ -8,6 +8,7 @@ import Register from '@/pages/Register'
 // 二级路由
 import Publish from '@/pages/ParttimeJob/Publish'
 import DraftBox from '@/pages/ParttimeJob/DraftBox'
+import DraftDetail from '@/pages/ParttimeJob/DraftDetail'
 
 Vue.use(Router)
 
@@ -37,6 +38,11 @@ export default new Router({
       path: '/parttimejob/draftbox',
       name: 'DraftBox',
       component: DraftBox
+    },
+    {
+      path: '/parttimejob/draftdetail/:id',
+      name: 'DraftDetail',
+      component: DraftDetail
     }
   ]
 })

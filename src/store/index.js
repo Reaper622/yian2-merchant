@@ -7,7 +7,9 @@ export default () => {
   return new Vuex.Store({
     state: {
       // 用户信息
-      user: {}
+      user: {},
+      // 兼职类型
+      jobTypeList: []
     },
     mutations: {
       // 登录存储
@@ -24,11 +26,17 @@ export default () => {
       },
       userState (state, user) {
         state.user = user
+      },
+      jobTypeList (state, list) {
+        state.jobTypeList = list
       }
     },
     getters: {
       getUser (state) {
         return state.user
+      },
+      getJobTypeList (state) {
+        return state.jobTypeList
       }
     }
   })

@@ -75,6 +75,18 @@ export default {
   components: {
     MHeader,
     Swiper
+  },
+  mounted () {
+    this.getJobTypeList()
+  },
+  methods: {
+    // 请求兼职类型以及其对应的代码,储存在Vuex中
+    getJobTypeList () {
+      this.$axios.post('/jobTypeList/getJobTypeListWithoutIcon.do')
+        .then(res => {
+          this.$store.commit('jobTypeList', res.data.data.list)
+        })
+    }
   }
 }
 </script>

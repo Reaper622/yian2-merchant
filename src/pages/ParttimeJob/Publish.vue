@@ -79,7 +79,8 @@ export default {
     MHeader
   },
   mounted () {
-    this.getParttimeJobType()
+    this.typeList = this.$store.getters.getJobTypeList
+    console.log(this.typeList)
     let _this = this
     let mobileSelect4 = new MobileSelect({// eslint-disable-line
       trigger: '#trigger4',
@@ -96,6 +97,22 @@ export default {
       callback: function (indexArr, data) {
         console.log(data[0])
         _this.list.rewardType = data[0].id
+      }
+    })
+
+    let mobileSelect5 = new MobileSelect({// eslint-disable-line
+      trigger: '#trigger5',
+      title: '选择兼职类型',
+      wheels: [
+        {data: _this.typeList}
+      ],
+      keyMap: {
+        id: 'id',
+        value: 'name'
+      },
+      callback: function (indexArr, data) {
+        console.log(indexArr, data[0])
+        _this.list.jobType = data[0].id
       }
     })
   },
@@ -132,28 +149,6 @@ export default {
         this.$layer.closeAll()
         this.$layer.msg('填写不符合标准')
       }
-    },
-    // 请求兼职类型以及其对应的代码
-    getParttimeJobType () {
-      let _this = this
-      this.$axios.post('/jobTypeList/getJobTypeListWithoutIcon.do')
-        .then(res => {
-          let mobileSelect5 = new MobileSelect({// eslint-disable-line
-            trigger: '#trigger5',
-            title: '选择兼职类型',
-            wheels: [
-              {data: res.data.data.list}
-            ],
-            keyMap: {
-              id: 'id',
-              value: 'name'
-            },
-            callback: function (indexArr, data) {
-              console.log(indexArr, data[0])
-              _this.list.jobType = data[0].id
-            }
-          })
-        })
     }
   }
 }

@@ -3,7 +3,7 @@
     <m-header
     :title="'兼职草稿箱'"
     :isBack="true"></m-header>
-    <div class="draft" v-for="(item, index) in drafts" :key="index">
+    <div class="draft" v-for="(item, index) in drafts" :key="index" @click="toDetail(item.jobId)">
       <p class="draft-title">{{item.jobSummary}}</p>
       <!-- <span class="draft-last-modify">最后修改时间</span> -->
     </div>
@@ -44,6 +44,10 @@ export default {
     // 点击添加跳转至发布页
     toPublish () {
       this.$router.replace('/parttimejob/publish')
+    },
+    // 前往草稿详情页
+    toDetail (id) {
+      this.$router.push('/parttimejob/draftdetail/' + id)
     }
   },
   mounted () {
