@@ -44,6 +44,8 @@ export default {
     // 点击函数
     clicked () {
       this.isclicked = !this.isclicked
+      // 触发点击事件
+      this.$emit('beClicked')
     }
   }
 }
@@ -51,10 +53,12 @@ export default {
 
 <style lang="stylus" scoped>
   @import '~@/assets/styles/varibles'
+  .wrapper
+    margin-top .2rem
   .boardBeforeClick
     width 100%
-    height 1rem
-    line-height 1rem
+    height 1.2rem
+    line-height 1.2rem
     background $color-info
     text-align center
     overflow hidden
@@ -66,8 +70,8 @@ export default {
       color $color-text
   .boardAfterClick
     width 100%
-    height 1rem
-    line-height 1rem
+    height 1.2rem
+    line-height 1.2rem
     background $color-theme
     text-align center
     overflow hidden
@@ -81,7 +85,7 @@ export default {
       color $color-text
   .titleText
     color $color-text
-    font-size $font-size-medium
+    font-size $font-size-large
   .contentItem
     position relative
     width 90%
