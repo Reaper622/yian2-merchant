@@ -11,8 +11,8 @@
       </p>
     </div>
     <transition name="slide-fade">
-      <div class="contentArea" v-show="isclicked">
-        <div class="contentItem" v-for="(item, index) in content" :key="index">
+      <div class="contentArea" v-show="isclicked" >
+        <div class="contentItem" v-for="(item, index) in content" :key="index" @click="toDetail(item.jobId)">
           <p class="contentTitle">{{item.jobSummary}}</p>
           <span class="contentTime">{{item.jobTime}}</span>
         </div>
@@ -46,6 +46,10 @@ export default {
       this.isclicked = !this.isclicked
       // 触发点击事件
       this.$emit('beClicked')
+    },
+    // 点击兼职前往详情页
+    toDetail (id) {
+      this.$router.push('/detail/' + id)
     }
   }
 }

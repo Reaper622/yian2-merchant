@@ -10,6 +10,7 @@ import Publish from '@/pages/ParttimeJob/Publish'
 import DraftBox from '@/pages/ParttimeJob/DraftBox'
 import DraftDetail from '@/pages/ParttimeJob/DraftDetail'
 import MyParttimeJob from '@/pages/ParttimeJob/MyParttimeJob'
+import Detail from '@/pages/Detail/Detail'
 
 Vue.use(Router)
 
@@ -49,6 +50,11 @@ export default new Router({
       path: '/parttimejob/myparttimejob',
       name: 'MyParttimeJob',
       component: MyParttimeJob
+    },
+    {
+      path: '/Detail/:id',
+      name: 'Detail',
+      component: Detail
     }
   ]
 })
