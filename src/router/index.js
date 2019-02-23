@@ -13,6 +13,9 @@ import DraftDetail from '@/pages/ParttimeJob/DraftDetail'
 import MyParttimeJob from '@/pages/ParttimeJob/MyParttimeJob'
 import Detail from '@/pages/Detail/Detail'
 
+// 三级路由
+import StudentsInfo from '@/pages/Detail/StudentsInfo'
+
 Vue.use(Router)
 
 export default new Router({
@@ -58,9 +61,14 @@ export default new Router({
       component: MyParttimeJob
     },
     {
-      path: '/Detail/:id',
+      path: '/detail/:id',
       name: 'Detail',
       component: Detail
+    },
+    {
+      path: '/detail/:id/studentsinfo',
+      name: 'StudentsInfo',
+      component: StudentsInfo
     }
   ]
 })

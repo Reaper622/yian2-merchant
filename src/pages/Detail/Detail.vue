@@ -34,6 +34,7 @@
       <div class="btn evaluate" v-show="isShowEvaluate" @click="toEvaluate()">前去评价</div>
       <div class="btn start" v-show="isShowStart" @click="startIt()">开工</div>
       <div class="btn rePublish" v-show="isShowRePublish" @click="rePublish()">重新发布</div>
+      <div class="btn checkPeople" v-show="isShowPeople" @click="checkStudent()">查看名单</div>
     </div>
     <div class="color-block"></div>
   </div>
@@ -64,7 +65,8 @@ export default {
       isShowStop: false,
       isShowEvaluate: false,
       isShowStart: false,
-      isShowRePublish: false
+      isShowRePublish: false,
+      isShowPeople: false
     }
   },
   methods: {
@@ -94,6 +96,10 @@ export default {
     checkStatus () {
       console.log(this.list)
       let num = this.list.status
+      // 除了待审核和未通过状态均可查看人员
+      if (num !== 0 && num !== 2) {
+        this.isShowPeople = true
+      }
       // 在正在展示与满员情况下可以停止招聘
       if (num === 1 || num === 3) {
         this.isShowStop = true
@@ -175,6 +181,11 @@ export default {
             }
           })
       })
+    },
+    // 查看报名学生列表
+    checkStudent () {
+      // 跳转至查看学生页面
+      this.$router.push('/detail/' + this.list.jobId + '/studentsinfo')
     }
   },
   mounted () {
@@ -243,4 +254,6 @@ export default {
       background $color-success
     .rePublish
       background $color-theme
+    .checkPeople
+      background $color-warning
 </style>
