@@ -3,6 +3,7 @@
     <m-header
     :title="'学生名单'"
     :isBack="true"></m-header>
+    <div class="exportList" @click="exportList">导出名单</div>
     <student-info
     v-for="(student,index) in students"
     :key="index"
@@ -127,6 +128,13 @@ export default {
             this.getStudents()
           }
         })
+    },
+    // 导出学生名单
+    exportList () {
+      let url = 'http://www.equator8848.xyz:8080/yian2/merchant/job/getSignInfoByExcel.do?jobId=' + this.$route.params.id
+      let link = document.createElement('a')
+      link.href = url
+      link.click()
     }
   }
 
@@ -135,6 +143,18 @@ export default {
 
 <style lang="stylus" scoped>
 @import '~@/assets/styles/varibles'
+  .exportList
+    position absolute
+    right 0
+    top 0
+    z-index 10
+    width 2rem
+    height $headerHeight
+    line-height $headerHeight
+    background $color-warning
+    color $color-text
+    text-align center
+    font-size $font-size-medium
   .cover
     position absolute
     top 0
