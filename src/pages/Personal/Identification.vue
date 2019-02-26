@@ -37,8 +37,8 @@ export default {
       let _this = this
       let file = this.$refs.file.files[0]
       let formData = new FormData()
-      formData.append('photo', file, file.name)
-      console.log(formData.get('photo'))
+      formData.append('img', file)
+      console.log(formData.get('img'))
       this.$axios.post('/merchant/audit/uploadAuditImg.do', formData, {
         headers: {'Content-Type': 'multipart/form-data'}
       })
