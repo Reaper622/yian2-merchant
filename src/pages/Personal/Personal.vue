@@ -7,7 +7,7 @@
       <img :src="avatarLink" alt="头像" class="avatar">
     </div>
     <div class="panel">个人信息</div>
-    <div class="panel">账号安全与认证</div>
+    <router-link to="/personal/identification"><div class="panel">账号安全与认证</div></router-link>
     <div class="panel">我的评价</div>
     <div class="panel">联系与反馈</div>
     <div class="loginOut" @click="loginOut">注销登录</div>

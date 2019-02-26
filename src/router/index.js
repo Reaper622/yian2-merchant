@@ -12,6 +12,7 @@ import DraftBox from '@/pages/ParttimeJob/DraftBox'
 import DraftDetail from '@/pages/ParttimeJob/DraftDetail'
 import MyParttimeJob from '@/pages/ParttimeJob/MyParttimeJob'
 import Detail from '@/pages/Detail/Detail'
+import Identification from '@/pages/Personal/Identification'
 
 // 三级路由
 import StudentsInfo from '@/pages/Detail/StudentsInfo'
@@ -69,6 +70,11 @@ export default new Router({
       path: '/detail/:id/studentsinfo',
       name: 'StudentsInfo',
       component: StudentsInfo
+    },
+    {
+      path: '/personal/identification',
+      name: 'Identification',
+      component: Identification
     }
   ]
 })
