@@ -13,6 +13,7 @@ import DraftDetail from '@/pages/ParttimeJob/DraftDetail'
 import MyParttimeJob from '@/pages/ParttimeJob/MyParttimeJob'
 import Detail from '@/pages/Detail/Detail'
 import Identification from '@/pages/Personal/Identification'
+import ResetPsw from '@/pages/Personal/ResetPsw'
 
 // 三级路由
 import StudentsInfo from '@/pages/Detail/StudentsInfo'
@@ -75,6 +76,11 @@ export default new Router({
       path: '/personal/identification',
       name: 'Identification',
       component: Identification
+    },
+    {
+      path: '/personal/resetpsw',
+      name: 'ResetPsw',
+      component: ResetPsw
     }
   ]
 })

@@ -164,18 +164,14 @@ export default {
 
 <style lang="stylus" scoped>
 @import '~@/assets/styles/varibles'
-  input::-webkit-input-placeholder{
-    color: $color-input-grey
-  }
-  input::-moz-placeholder{   /* Mozilla Firefox 19+ */
-    color: $color-input-grey
-  }
-  input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
-    color: $color-input-grey
-  }
-  input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
-    color: $color-input-grey
-  }
+  input::-webkit-input-placeholder
+    color $color-input-grey
+  input::-moz-placeholder  /* Mozilla Firefox 19+ */
+    color $color-input-grey
+  input:-moz-placeholder   /* Mozilla Firefox 4 to 18 */
+    color $color-input-grey
+  input:-ms-input-placeholder  /* Internet Explorer 10-11 */
+    color $color-input-grey
   .header-info
     padding .2rem 0
     margin-bottom .2rem
