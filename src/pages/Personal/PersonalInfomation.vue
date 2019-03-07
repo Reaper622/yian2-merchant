@@ -17,7 +17,13 @@
     <div class="btn" @click="checkInfo">保存</div>
     <div class="cover" v-show="avatarChange" @click="toChangeAvatar(false)"></div>
     <transition name="bounce">
-      <div class="AvatarSelector" v-show="avatarChange"></div>
+      <div class="AvatarSelector" v-show="avatarChange">
+        <div class="avatarPanel">
+          <img v-for="(item,index) in avatarList" :key="index" :src="item.icon" @click="selectAvatar(item)" >
+        </div>
+        <img :src="selectedAvatar.icon" class="selectedAvatar">
+        <div class="selectBtn" @click="applyNewAvatar(selectedAvatar)">确 认 选 择</div>
+      </div>
     </transition>
   </div>
 </template>
@@ -39,7 +45,9 @@ export default {
       phone: '',
       qQ: '',
       wX: '',
-      avatarChange: false
+      avatarChange: false,
+      avatarList: [],
+      selectedAvatar: {}
     }
   },
   methods: {
@@ -61,6 +69,18 @@ export default {
         this.$layer.closeAll()
         this.$layer.msg('输入有误，请检查')
       }
+    },
+    // 获取头像信息
+    getAvatarList () {
+      this.$axios.get('http://www.equator8848.xyz:8080/yian2/common/account/getIconList.do')
+        .then(res => {
+          if (res.data.status === 1) {
+            this.avatarList = res.data.data.list
+          } else {
+            this.$layer.closeAll()
+            this.$layer.msg(res.data.msg)
+          }
+        })
     },
     // 修改个人信息
     updateInfo () {
@@ -96,10 +116,29 @@ export default {
     // 触发修改头像事件
     toChangeAvatar (bool) {
       this.avatarChange = bool
+    },
+    // 选择头像
+    selectAvatar (avatar) {
+      this.selectedAvatar = avatar
+    },
+    // 确认更改头像
+    applyNewAvatar (avatar) {
+      this.$axios.post('/merchant/account/updateUserIcon.do', qs.stringify({
+        iconNum: avatar.id
+      }))
+        .then(res => {
+          if (res.data.status === 2000) {
+            this.$layer.closeAll()
+            this.$layer.msg(res.data.msg)
+            this.icon = avatar.icon
+            this.avatarChange = false
+          }
+        })
     }
   },
   mounted () {
     this.getInfomation()
+    this.getAvatarList()
   }
 }
 </script>
@@ -159,6 +198,8 @@ export default {
     margin 1rem 10% 0
     background #fff
     z-index 101
+    border 5px solid $color-theme
+    border-radius .2rem
   .bounce-enter-active
     animation bounce-in .5s
   .bounce-leave-active
@@ -170,4 +211,25 @@ export default {
       transform scale(1.2)
     100%
       transform scale(1)
+  .avatarPanel
+    height 4rem
+    width 100%
+    background gray
+    display grid
+    grid-template-columns: 25% 25% 25% 25%
+    img
+      width 100%
+      height auto
+  .selectedAvatar
+    width 25%
+    height auto
+    margin .2rem 37.5% 0
+  .selectBtn
+    width 90%
+    height rem
+    line-height 1rem
+    margin .5rem 5%
+    text-align center
+    background $color-success
+    color $color-text
 </style>
