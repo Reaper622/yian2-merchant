@@ -5,6 +5,7 @@
     :isBack="true"></m-header>
     <div class="avatarArea">
       <img :src="this.icon" class="avatar">
+      <div class="changeAvatarBtn" @click="toChangeAvatar(true)">修改头像</div>
     </div>
     <div class="infoArea">
       <input class="infoInput" type="text" placeholder="姓名" v-model="name">
@@ -14,12 +15,17 @@
       <input class="infoInput" type="text" placeholder="微信" v-model="wX">
     </div>
     <div class="btn" @click="checkInfo">保存</div>
+    <div class="cover" v-show="avatarChange" @click="toChangeAvatar(false)"></div>
+    <transition name="bounce">
+      <div class="AvatarSelector" v-show="avatarChange"></div>
+    </transition>
   </div>
 </template>
 
 <script>
 import qs from 'qs'
 import MHeader from '@/components/MHeader/MHeader'
+
 export default {
   name: 'PersonalInfomation',
   components: {
@@ -32,7 +38,8 @@ export default {
       name: '',
       phone: '',
       qQ: '',
-      wX: ''
+      wX: '',
+      avatarChange: false
     }
   },
   methods: {
@@ -85,6 +92,10 @@ export default {
       user.wX = this.wX
       user.qQ = this.qQ
       this.$store.commit('userState', user)
+    },
+    // 触发修改头像事件
+    toChangeAvatar (bool) {
+      this.avatarChange = bool
     }
   },
   mounted () {
@@ -102,6 +113,16 @@ export default {
       width 2rem
       height 2rem
       margin .5rem .5rem
+    .changeAvatarBtn
+      width 2rem
+      height .6rem
+      line-height .6rem
+      background $color-success
+      float right
+      text-align center
+      margin 1.2rem .5rem
+      color $color-text
+      border-radius .2rem
   .infoArea
     width 100%
     height auto
@@ -123,4 +144,30 @@ export default {
     letter-spacing 1rem
     text-indent 1rem
     font-size $font-size-large
+  .cover
+    position absolute
+    top 0
+    width 100%
+    height 100%
+    background rgba(160, 160, 160, .5)
+    z-index 100
+  .AvatarSelector
+    position absolute
+    top 2rem
+    width 80%
+    height 8rem
+    margin 1rem 10% 0
+    background #fff
+    z-index 101
+  .bounce-enter-active
+    animation bounce-in .5s
+  .bounce-leave-active
+    animation bounce-in .5s reverse
+  @keyframes bounce-in
+    0%
+      transform scale(0)
+    50%
+      transform scale(1.2)
+    100%
+      transform scale(1)
 </style>
