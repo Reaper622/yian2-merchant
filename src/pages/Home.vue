@@ -5,47 +5,24 @@
       :isBack="false"></m-header>
     <swiper :swiperList="swiperListDemo"></swiper>
     <div class="menu">
-      <div class="menu-lane">
+      <div class="menu-panel">
         <router-link to="/parttimejob/publish">
-          <div class="menu-item">
-            <p class="menu-icon">
-              <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-fabu"></use>
-              </svg>
-            </p>
-            <p class="menu-title">发布兼职</p>
-          </div>
-        </router-link>
-        <router-link to="/parttimejob/draftbox">
-          <div class="menu-item">
-            <p class="menu-icon">
-              <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-caogaoxiang"></use>
-              </svg>
-            </p>
-            <p class="menu-title">草稿箱</p>
+          <div class="menu-item item1">
+            发 布 兼 职
           </div>
         </router-link>
       </div>
-      <div class="menu-lane">
-        <router-link to="/parttimejob/myParttimejob">
-          <div class="menu-item">
-            <p class="menu-icon">
-              <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-wode2"></use>
-              </svg>
-            </p>
-            <p class="menu-title">我的兼职</p>
+      <div class="menu-panel">
+        <router-link to="/parttimejob/draftbox">
+          <div class="menu-item item2">
+            草  稿  箱
           </div>
         </router-link>
-        <router-link to="/moreFunction">
-          <div class="menu-item">
-            <p class="menu-icon">
-              <svg class="icon" aria-hidden="true">
-                <use xlink:href="#icon-gengduo"></use>
-              </svg>
-            </p>
-            <p class="menu-title">更多功能</p>
+      </div>
+      <div class="menu-panel">
+        <router-link to="/parttimejob/myParttimejob">
+          <div class="menu-item item3">
+            我 的 兼 职
           </div>
         </router-link>
       </div>
@@ -62,13 +39,7 @@ export default {
     return {
       swiperListDemo: [{
         id: '0001',
-        imgUrl: 'https://image.ganjistatic1.com/gjfsqq/097136cab4dc4fe4943b1a03e7f2db68_0-0_7-5.png'
-      }, {
-        id: '0002',
-        imgUrl: 'https://image.ganjistatic1.com/gjfsqq/gjupload/671e4c82eddf4f269be1ae9034928245_0-0_7-5.png'
-      }, {
-        id: '0003',
-        imgUrl: 'https://image.ganjistatic1.com/gjfsqq/ec8d3987fafb474fb088394c3f60f0fa_0-0_7-5.jpg'
+        imgUrl: '../../static/swiper.png'
       }]
     }
   },
@@ -97,24 +68,26 @@ export default {
     width 100%
     margin-top 2rem
     text-align center
-    .menu-lane
-      margin-bottom .2rem
+    .menu-panel
+      margin-bottom 1rem
+      display flex
+      justify-content:space-around
       .menu-item
-        display inline-block
         width 3rem
-        height 3rem
-        border-radius .1rem
+        height 1rem
+        line-height 1rem
+        border-radius .3rem
         margin-left .2rem
         margin-right .2rem
-        background-color $color-theme
-        .icon
-          width 1rem
-          height 1rem
-          margin-top .2rem
-          color $color-text
-      .menu-title
         font-size $font-size-large
-        color $color-text
-        margin-top .5rem
-
+  .item1
+    background #79BBFF
+    color $color-text
+  .item2
+    background $color-theme
+    color $color-text
+  .item3
+    backgournd #ffffff
+    color $color-theme
+    border .5px solid $color-theme
 </style>

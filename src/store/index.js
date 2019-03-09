@@ -16,6 +16,7 @@ export default () => {
       loginState (state, user) { // 第一个参数为state，第二个为传递的参数
         // 用sessionStorage存储登录userId可防止用户刷新后state内登录态清空
         window.sessionStorage.setItem('uid', user.uid)
+        window.sessionStorage.setItem('user', JSON.stringify(user))
         state.user = user
       },
       // 注销删除
@@ -28,14 +29,21 @@ export default () => {
         state.user = user
       },
       jobTypeList (state, list) {
+        window.sessionStorage.setItem('jobTypeList', JSON.stringify(list))
         state.jobTypeList = list
       }
     },
     getters: {
       getUser (state) {
+        if (!state.user.uid) {
+          return JSON.parse(window.sessionStorage.getItem('user'))
+        }
         return state.user
       },
       getJobTypeList (state) {
+        if (!state.jobTypeList[0]) {
+          return JSON.parse(window.sessionStorage.getItem('jobTypeList'))
+        }
         return state.jobTypeList
       }
     }

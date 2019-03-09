@@ -3,14 +3,17 @@
     <m-header
     :title="'账号安全-修改密码'"
     :isBack="true"></m-header>
-    <div class="input-wrapper">
-      <input class="pswInput" type="password" placeholder="旧密码" v-model="oldPsw">
-      <input class="pswInput" type="password" placeholder="新密码" v-model="newPsw" @blur="checkPsw">
-      <input class="pswInput" type="password" placeholder="确认密码" v-model="rePsw" @blur="checkRePsw">
+    <div class="content">
+      <img src="@/assets/images/longLogo.png">
+      <div class="input-wrapper">
+        <input class="pswInput" type="password" placeholder="旧密码" v-model="oldPsw">
+        <input class="pswInput" type="password" placeholder="新密码" v-model="newPsw" @blur="checkPsw">
+        <input class="pswInput" type="password" placeholder="确认密码" v-model="rePsw" @blur="checkRePsw">
+      </div>
+      <input type="text" class="authCodeInput" placeholder="输入验证码" v-model="authCode">
+      <div class="getAuthCode" @click="getAuthCode">获取验证码</div>
+      <div class="reset">确认修改</div>
     </div>
-    <input type="text" class="authCodeInput" placeholder="输入验证码" v-model="authCode">
-    <div class="getAuthCode" @click="getAuthCode">获取验证码</div>
-    <div class="reset">确认修改</div>
   </div>
 </template>
 
@@ -104,22 +107,29 @@ export default {
 
 <style lang="stylus" scoped>
   @import '~@/assets/styles/varibles'
+  .content
+    width 90%
+    height auto
+    background #fff
+    border-radius .2rem
+    margin .5rem 5% 0
+    img
+     width 60%
+     height auto
+     margin .5rem 20%
   .input-wrapper
-    margin-top 1.5rem
     display flex
     flex-direction column
     .pswInput
       border-bottom .02rem solid #CECECE
       padding .2rem
-      margin .4rem
-      margin-top .6rem
+      margin .2rem .4rem
       font-size $font-size-medium
   .authCodeInput
     width 3rem
     border-bottom .02rem solid #CECECE
     padding .2rem
-    margin .4rem
-    margin-top .6rem
+    margin .2rem .4rem
     font-size $font-size-medium
   .getAuthCode
     display inline-block
