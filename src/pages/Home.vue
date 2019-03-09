@@ -39,7 +39,7 @@ export default {
     return {
       swiperListDemo: [{
         id: '0001',
-        imgUrl: '../../static/swiper.png'
+        imgUrl: '../../static/images/swiper.png'
       }]
     }
   },

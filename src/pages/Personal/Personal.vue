@@ -1,16 +1,59 @@
 <template>
-  <div class="wrapper">
+  <div class="bgwrapper">
     <m-header
     :title="'个人中心'"
     :isBack="true"></m-header>
-    <div class="avatarArea">
-      <img :src="avatarLink" alt="头像" class="avatar">
+    <div class="logoContainer">
+      <div class="logo">
+        <img src="" alt="">
+      </div>
+      <div class="avatar-box">
+        <img :src="avatarLink" class="avatar" />
+      </div>
     </div>
-    <router-link to="/personal/personalinfomation"><div class="panel">个人信息</div></router-link>
-    <router-link to="/personal/identification"><div class="panel">账号安全与认证</div></router-link>
-    <router-link to="/evaluation"><div class="panel">我的评价</div></router-link>
-    <router-link to="/personal/contact"><div class="panel">联系与反馈</div></router-link>
-    <div class="loginOut" @click="loginOut">注销登录</div>
+    <div class="thewrapper">
+      <div class="item border-bottom">
+        <router-link to="/personal/personalinfomation">
+          <div>
+            个人信息
+            <img class="mini-image" src="@/assets/images/1.png">
+          </div>
+        </router-link>
+      </div>
+      <div class="item item-margin-bottom">
+        <router-link to="/personal/identification">
+          <div>
+            账号安全与认证
+            <img class="mini-image2" src="@/assets/images/2.png">
+          </div>
+        </router-link>
+      </div>
+      <div class="item border-bottom">
+        <router-link to="/parttimejob/myparttimejob">
+          <div>
+            我的兼职
+            <img class="mini-image2" src="@/assets/images/3.png">
+          </div>
+        </router-link>
+      </div>
+      <div class="item border-bottom item-margin-bottom">
+        <router-link to="/evaluation">
+          <div>
+            我的评价
+            <img class="mini-image2" src="@/assets/images/5.png">
+          </div>
+        </router-link>
+      </div>
+      <div class="item">
+        <router-link to="/personal/contact">
+          <div>
+            评价与反馈
+            <img class="mini-image2" src="@/assets/images/6.png">
+          </div>
+        </router-link>
+      </div>
+      <div class="item logout" @click="logOut">注 销 登 录</div>
+    </div>
   </div>
 </template>
 
@@ -35,7 +78,7 @@ export default {
       this.avatarLink = this.$store.getters.getUser.icon
     },
     // 注销
-    loginOut () {
+    logOut () {
       // 弹框让用户确认是否注销
       this.$layer.closeAll()
       this.$layer.confirm('您确定要注销吗？', () => {
@@ -58,32 +101,62 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  @import '~@/assets/styles/varibles'
-  .wrapper
-    .avatarArea
-      position relative
-      width 100%
-      height 3rem
-      .avatar
-        position absolute
-        width 2rem
-        height 2rem
-        right .2rem
-        top .5rem
-    .panel
-      width 100%
-      height 1rem
-      line-height 1rem
-      text-align center
-      color $color-text
-      background $bgColor
-      margin-bottom .2rem
-    .loginOut
-      width 100%
-      height 1rem
-      line-height 1rem
-      text-align center
-      color $color-text
-      background $color-danger
-      margin-top 2rem
+@import '~@/assets/styles/varibles.styl'
+    .logoContainer
+      display flex
+      margin .5rem .26rem .36rem
+      background-color #ffffff
+      padding .8rem .4rem
+      border-radius .24rem
+      .logo
+        flex-grow 7
+        background-image url('/static/images/appLogo.png')
+        background-repeat no-repeat
+        background-size 100% 100%
+        -moz-background-size 100% 100%
+        height 1rem
+      .avatar-box
+        flex-grow 3
+        height 1rem
+        // background grey
+        position relative
+        .avatar
+          position absolute
+          left .4rem
+          top -0.3rem
+          width 1.6rem
+          height 1.6rem
+          border-radius .9rem
+          background-color #FFE1F1
+    .thewrapper
+      display flex
+      flex-direction column
+      justify-content center
+      // text-align center
+      // a
+      //   color black
+      .item
+        position relative
+        padding .3rem 0 .3rem 1.4rem
+        background #ffffff
+        .mini-image
+          position absolute
+          left 0.44rem
+          bottom .2rem
+          width .44rem
+          height .48rem
+        .mini-image2
+          position absolute
+          left 0.44rem
+          bottom .22rem
+          width .44rem
+          height .44rem
+      .item-margin-bottom
+        margin-bottom .3rem
+      .logout
+        margin-top .7rem
+        padding .3rem 0
+        text-align center
+        color $color-danger
+        font-weight bold
 </style>
