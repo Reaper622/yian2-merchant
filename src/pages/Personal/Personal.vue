@@ -8,7 +8,7 @@
     </div>
     <router-link to="/personal/personalinfomation"><div class="panel">个人信息</div></router-link>
     <router-link to="/personal/identification"><div class="panel">账号安全与认证</div></router-link>
-    <div class="panel">我的评价</div>
+    <router-link to="/evaluation"><div class="panel">我的评价</div></router-link>
     <router-link to="/personal/contact"><div class="panel">联系与反馈</div></router-link>
     <div class="loginOut" @click="loginOut">注销登录</div>
   </div>

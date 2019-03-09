@@ -246,6 +246,6 @@ export default {
     overflow hidden
     z-index 1
     .content
-      height 100%
+      height auto
       padding-bottom .88rem
 </style>

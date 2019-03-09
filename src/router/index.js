@@ -5,6 +5,7 @@ import Login from '@/pages/Login'
 import Home from '@/pages/Home'
 import Register from '@/pages/Register'
 import Personal from '@/pages/Personal/Personal'
+import Evaluation from '@/pages/Evaluation/Evaluation'
 
 // 二级路由
 import Publish from '@/pages/ParttimeJob/Publish'
@@ -93,6 +94,11 @@ export default new Router({
       path: '/personal/personalinfomation',
       name: 'PersonalInfomation',
       component: PersonalInfomation
+    },
+    {
+      path: '/evaluation',
+      name: 'Evaluation',
+      component: Evaluation
     }
   ]
 })
