@@ -185,7 +185,7 @@ export default {
     // 查看报名学生列表
     checkStudent () {
       // 跳转至查看学生页面
-      this.$router.push('/detail/' + this.list.jobId + '/studentsinfo')
+      this.$router.push('/detail/' + this.list.jobId + '/studentsinfo/' + this.list.status)
     }
   },
   mounted () {

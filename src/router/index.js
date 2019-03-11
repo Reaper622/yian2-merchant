@@ -71,7 +71,7 @@ export default new Router({
       component: Detail
     },
     {
-      path: '/detail/:id/studentsinfo',
+      path: '/detail/:id/studentsinfo/:status',
       name: 'StudentsInfo',
       component: StudentsInfo
     },

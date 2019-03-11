@@ -6,7 +6,8 @@
       <div class="panel contact">{{contact}}</div>
     </div>
     <div class="operationArea">
-      <div class="btn refuse" @click="refuseIt()">拒绝</div>
+      <div class="btn refuse" @click="refuseIt" v-if="status != 8">拒绝</div>
+      <div class="btn evaluate" @click="evaluateIt" v-else>评价</div>
     </div>
   </div>
 </template>
@@ -14,7 +15,7 @@
 <script>
 export default {
   name: 'StudentInfo',
-  props: ['name', 'school', 'contact', 'studentId'],
+  props: ['name', 'school', 'contact', 'studentId', 'status'],
   data () {
     return {
       notes: ''
@@ -25,6 +26,11 @@ export default {
     refuseIt () {
       // 触发父级弹出表单
       this.$emit('refuse', this.studentId)
+    },
+    // 评价此人
+    evaluateIt () {
+      // 触发父级弹出评价框
+      this.$emit('evaluate', this.studentId)
     }
   }
 }
@@ -68,11 +74,13 @@ export default {
       width 2rem
       height 1rem
       margin-top .7rem
-      background $color-danger
       text-align center
       line-height 1rem
       color $color-text
       font-size $font-size-medium-x
       border-radius .3rem
-
+  .refuse
+    background $color-danger
+  .evaluate
+    background $color-success
 </style>

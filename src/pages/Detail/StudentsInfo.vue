@@ -3,7 +3,8 @@
     <m-header
     :title="'学生名单'"
     :isBack="true"></m-header>
-    <div class="exportList" @click="exportList">导出名单</div>
+    <div class="exportList" @click="exportList" v-if="status != 8">导出名单</div>
+    <div class="exportList" @click="allGood" v-else>一键好评</div>
     <student-info
     v-for="(student,index) in students"
     :key="index"
@@ -11,7 +12,9 @@
     :school="student.studentSchoolId"
     :contact="student.studentPhone"
     :studentId="student.studentId"
-    @refuse="refuseForm"></student-info>
+    :status="status"
+    @refuse="refuseForm"
+    @evaluate="evaluateForm"></student-info>
     <div class="cover" v-show="isRefusing" @click="stopRefusing"></div>
     <transition name="bounce">
       <div class="refuseForm" v-show="isRefusing">
@@ -36,6 +39,20 @@
         <div class="btn" @click="refuseStudent">确认</div>
       </div>
     </transition>
+    <div class="cover" v-show="isEvaluating" @click="stopEvaluating"></div>
+    <transition name="bounce">
+      <div class="evaluateForm" v-show="isEvaluating">
+        <div class="starPanel">
+          <div class="star medium"></div>
+          <div class="star medium"></div>
+          <div class="star medium"></div>
+        </div>
+        <div class="content">
+          <textarea  placeholder="在这里写评价内容..."></textarea>
+        </div>
+        <div class="evaluateBtn" @click="evaluateStudent">确认</div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -53,10 +70,13 @@ export default {
     return {
       students: [],
       isRefusing: false,
+      isEvaluating: false,
       checkedValue: '',
       otherReason: '',
       isOther: true,
-      refuseStudentId: ''
+      refuseStudentId: '',
+      evaluateStudentId: '',
+      status: 0
     }
   },
   watch: {
@@ -71,6 +91,7 @@ export default {
   },
   mounted () {
     this.getStudents()
+    this.status = this.$route.params.status
   },
   methods: {
     // 获取学生信息
@@ -97,9 +118,18 @@ export default {
       this.isRefusing = true
       this.refuseStudentId = id
     },
+    // 弹出评价框
+    evaluateForm (id) {
+      this.isEvaluating = true
+      this.evaluateStudentId = id
+    },
     // 点击灰色取消弹出框
     stopRefusing () {
       this.isRefusing = false
+    },
+    // 点击灰色取消弹出框
+    stopEvaluating () {
+      this.isEvaluating = false
     },
     // 拒绝此学生
     refuseStudent () {
@@ -129,12 +159,19 @@ export default {
           }
         })
     },
+    evaluateStudent () {
+
+    },
     // 导出学生名单
     exportList () {
       let url = 'http://www.equator8848.xyz:8080/yian2/merchant/job/getSignInfoByExcel.do?jobId=' + this.$route.params.id
       let link = document.createElement('a')
       link.href = url
       link.click()
+    },
+    // 一键好评
+    allGood () {
+
     }
   }
 
@@ -181,6 +218,39 @@ export default {
         width .5rem
         height .5rem
         backgroundcolor $color-theme
+  .evaluateForm
+    position absolute
+    width 80%
+    left 10%
+    height 60%
+    background #fff
+    z-index 999
+    top 2rem
+    overflow hidden
+    border-radius .5rem
+    .starPanel
+      width 80%
+      margin .2rem 10%
+      height 2rem
+      display flex
+      justify-content space-around
+    .content
+      width 80%
+      margin .2rem 10% 0
+      height 50%
+      border 1px solid black
+      textarea
+        width 100%
+        height 100%
+    .evaluateBtn
+      width 40%
+      margin .3rem 30%
+      border-radius .2rem
+      height 1rem
+      line-height 1rem
+      background $color-success
+      color $color-text
+      text-align center
   .inputReason
     width 4rem
     height .8rem
@@ -207,4 +277,39 @@ export default {
       transform scale(1.2)
     100%
       transform scale(1)
+  // 实现五角星
+  .star.medium {
+    border-color: #fd4 transparent transparent transparent;
+    border-style: solid;
+    border-top-width: 16.66667px;
+    border-right-width: 25px;
+    border-left-width: 25px;
+    height: 0;
+    margin-top: 16.66667px;
+    margin-bottom: 10.71429px;
+    position: relative;
+    width: 0;
+    top: .8rem
+}
+.star.medium:before,
+.star.medium:after {
+    border-color: #fd4 transparent transparent transparent;
+    border-style: solid;
+    border-top-width: 16.66667px;
+    border-right-width: 25px;
+    border-left-width: 25px;
+    content: '';
+    display: block;
+    height: 0;
+    left: -25px;
+    position: absolute;
+    top: -16.66667px;
+    width: 0;
+}
+.star.medium:before {
+    transform: rotate(70deg);
+}
+.star.medium:after {
+    transform: rotate(-70deg);
+}
 </style>

@@ -177,10 +177,10 @@ export default {
           jobSummary: this.list.jobSummary,
           jobTime: this.list.jobTime,
           reward: parseInt(this.list.reward),
-          rewardType: this.list.rewardType,
+          rewardType: parseInt(this.list.rewardType),
           address: this.list.address,
           details: this.list.details,
-          jobType: this.list.jobType,
+          jobType: parseInt(this.list.jobType),
           hireNum: parseInt(this.list.hireNum),
           schoolId: parseInt(this.list.schoolId)
         }))
