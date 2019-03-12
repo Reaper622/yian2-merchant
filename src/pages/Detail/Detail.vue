@@ -135,6 +135,7 @@ export default {
     },
     // 前去评价
     toEvaluate () {
+      this.$router.push('/detail/' + this.list.jobId + '/studentsinfo/' + this.list.status)
     },
     // 开工
     startIt () {
