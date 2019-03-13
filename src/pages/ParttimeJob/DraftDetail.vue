@@ -116,10 +116,11 @@ export default {
       }))
         .then(res => {
           if (res.data.status === 2000) {
+            console.log(res.data.data)
             _this.list = res.data.data
             // 在Trigger中展示数据
             _this.$refs.jobTypeTrigger.innerHTML = _this.getJobTypeName(res.data.data.jobType)
-            _this.$refs.rewardTypeTrigger.innerHTML = _this.getRewardTypeName(res.data.data.rewardType)
+            _this.$refs.rewardTypeTrigger.innerHTML = res.data.data.rewardType
           } else {
             _this.$layer.closeAll()
             _this.$layer.msg(res.data.msg)
@@ -158,13 +159,13 @@ export default {
       }
     },
     // 根据代码获取对应的报酬类型文字
-    getRewardTypeName (num) {
-      if (num === 0) {
-        return '小时'
-      } else if (num === 1) {
-        return '天'
+    getRewardTypeNum (type) {
+      if (type === '小时') {
+        return 0
+      } else if (type === '天') {
+        return 1
       } else {
-        return '月'
+        return 2
       }
     },
     // 编辑草稿之后，保存
@@ -177,7 +178,7 @@ export default {
           jobSummary: this.list.jobSummary,
           jobTime: this.list.jobTime,
           reward: parseInt(this.list.reward),
-          rewardType: parseInt(this.list.rewardType),
+          rewardType: parseInt(this.getRewardTypeNum(this.list.rewardType)),
           address: this.list.address,
           details: this.list.details,
           jobType: parseInt(this.list.jobType),
@@ -211,7 +212,7 @@ export default {
           jobSummary: this.list.jobSummary,
           jobTime: this.list.jobTime,
           reward: parseInt(this.list.reward),
-          rewardType: this.list.rewardType,
+          rewardType: parseInt(this.getRewardTypeNum(this.list.rewardType)),
           address: this.list.address,
           details: this.list.details,
           jobType: this.list.jobType,
