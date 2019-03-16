@@ -84,7 +84,7 @@ export default {
     },
     // 比较兼职类型码获取类型文字
     getTypeName (num) {
-      // 冲VueX中获取
+      // 从VueX中获取
       let typeList = this.$store.getters.getJobTypeList
       for (let x in typeList) {
         if (typeList[x].id === num) {

@@ -18,9 +18,13 @@
     <div class="cover" v-show="avatarChange" @click="toChangeAvatar(false)"></div>
     <transition name="bounce">
       <div class="AvatarSelector" v-show="avatarChange">
-        <div class="avatarPanel">
+        <swiper :options="swiperOption" class="swiper-container">
+            <swiper-slide class="avatar-slide" v-for="(arr, index) in avatarList" :key="index">
+              <img class="avaImg" v-for="(avatar, index) in arr" :key="index" :src="avatar.icon" @click="selectAvatar(avatar)">
+            </swiper-slide>
+            <div class="swiper-pagination" slot="pagination"></div>
+        </swiper>
           <img v-for="(item,index) in avatarList" :key="index" :src="item.icon" @click="selectAvatar(item)" >
-        </div>
         <img :src="selectedAvatar.icon" class="selectedAvatar">
         <div class="selectBtn" @click="applyNewAvatar(selectedAvatar)">确 认 选 择</div>
       </div>
@@ -47,7 +51,14 @@ export default {
       wX: '',
       avatarChange: false,
       avatarList: [],
-      selectedAvatar: {}
+      selectedAvatar: {},
+      swiperOption: {
+        direction: 'horizontal',
+        speed: 300,
+        pageination: {
+          el: '.swiper-pagination'
+        }
+      }
     }
   },
   methods: {
@@ -75,7 +86,9 @@ export default {
       this.$axios.get('http://www.equator8848.xyz:8080/yian2/common/account/getIconList.do')
         .then(res => {
           if (res.data.status === 1) {
-            this.avatarList = res.data.data.list
+            this.avatarList = this.splitAvatarList(res.data.data.list, 6)
+            console.log(this.avatarList)
+            console.log(res.data.data.list)
           } else {
             this.$layer.closeAll()
             this.$layer.msg(res.data.msg)
@@ -134,11 +147,21 @@ export default {
             this.avatarChange = false
           }
         })
+    },
+    // 将头像数组拆分为6个一组
+    splitAvatarList (arr, len) {
+      var result = []
+      for (var i = 0; i < arr.length; i += len) {
+        result.push(arr.slice(i, i + len))
+      }
+      return result
     }
   },
-  mounted () {
+  beforeMount () {
     this.getInfomation()
     this.getAvatarList()
+  },
+  mounted () {
   }
 }
 </script>
@@ -194,7 +217,7 @@ export default {
     position absolute
     top 2rem
     width 80%
-    height 8rem
+    height 8.5rem
     margin 1rem 10% 0
     background #fff
     z-index 101
@@ -211,15 +234,18 @@ export default {
       transform scale(1.2)
     100%
       transform scale(1)
-  .avatarPanel
-    height 4rem
+  .swiper-container
     width 100%
-    background gray
-    display grid
-    grid-template-columns: 25% 25% 25% 25%
-    img
+    height 4.5rem
+    .avatar-slide
+      height 4rem
       width 100%
-      height auto
+      display grid
+      grid-template-columns 30% 30% 30%
+      justify-content space-around
+      .avaImg
+        width 100%
+        height auto
   .selectedAvatar
     width 25%
     height auto
