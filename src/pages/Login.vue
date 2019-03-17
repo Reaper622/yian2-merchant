@@ -71,10 +71,9 @@ export default {
       if (res.data.status === 2000) {
         this.$layer.closeAll()
         this.$layer.msg('登录成功')
-        this.$router.replace('/home')
-        console.log(res.data.data)
         // 向Vuex中存储用户信息
         this.$store.commit('loginState', res.data.data)
+        this.$router.replace('/home')
       } else {
         this.$layer.closeAll()
         this.$layer.msg(res.data.msg)

@@ -37,7 +37,8 @@ router.beforeEach((to, from, next) => {
     next()
   } else {
     // 若未登录，前往登录页面
-    if (window.sessionStorage.getItem('uid') === null) {
+    if (store.getters.getUser === null) {
+      console.log(store.getters.getUser)
       next('/login')
     } else { // 若已登录，跳转至目标地址
       next()
