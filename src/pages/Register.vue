@@ -3,6 +3,9 @@
     <div class="header-info">
       欢迎注册易安账号（商家）
     </div>
+    <div class="logo-wrapper">
+      <img class="logo" src="@/assets/images/longLogo.png" alt="gg">
+    </div>
     <div class="input-wrapper">
       <input class="input" v-model="list.uid" type="text" placeholder="输入邮箱地址作为账号" @blur="checkEmail">
       <input class="input" v-model="list.psw" type="password" placeholder="请设置密码(6-16位)" @blur="checkPsw">
@@ -179,6 +182,14 @@ export default {
     text-align center
     color #ffffff
     font-size .3rem
+  .logo-wrapper
+    display flex
+    justify-content center
+    margin-top 1rem
+    margin-bottom 1rem
+    .logo
+      width auto
+      height 1.5rem
   .input-wrapper
     display: flex
     flex-direction: column

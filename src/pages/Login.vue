@@ -6,7 +6,7 @@
       </router-link>
     </div>
     <div class="logo-wrapper">
-      <img class="logo" src="@/assets/images/logo.png" alt="gg">
+      <img class="logo" src="@/assets/images/longLogo.png" alt="gg">
     </div>
     <div class="input-wrapper">
       <input class="input" type="text" placeholder="用户邮箱" v-model="list.uid">
@@ -125,8 +125,9 @@ export default {
     display flex
     justify-content center
     margin-top 1rem
+    margin-bottom 1rem
     .logo
-      width 1.5rem
+      width auto
       height 1.5rem
   .input-wrapper
     display flex

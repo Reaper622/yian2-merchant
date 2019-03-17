@@ -32,7 +32,6 @@ Vue.prototype.$axios = Axios
 
 // 路由守卫，检测是否登录
 router.beforeEach((to, from, next) => {
-  console.log(to.path)
   // 若是前往登录与注册页面
   if (to.path === '/login' || to.path === '/register') {
     next()
