@@ -1,8 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="header-info">
-      欢迎注册易安账号（商家）
-    </div>
+    <m-header :title="'欢迎注册易安账号（商家）'"></m-header>
     <div class="logo-wrapper">
       <img class="logo" src="@/assets/images/longLogo.png" alt="gg">
     </div>
@@ -32,6 +30,7 @@
 
 <script>
 import qs from 'qs'
+import MHeader from '@/components/MHeader/MHeader'
 export default {
   name: 'Register',
   data () {
@@ -44,6 +43,9 @@ export default {
       },
       flag: true
     }
+  },
+  components: {
+    MHeader
   },
   methods: {
     sendInfo () {
@@ -175,13 +177,6 @@ export default {
     color $color-input-grey
   input:-ms-input-placeholder  /* Internet Explorer 10-11 */
     color $color-input-grey
-  .header-info
-    padding .2rem 0
-    margin-bottom .2rem
-    background-color $color-theme
-    text-align center
-    color #ffffff
-    font-size .3rem
   .logo-wrapper
     display flex
     justify-content center
