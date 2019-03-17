@@ -6,6 +6,7 @@ import Home from '@/pages/Home'
 import Register from '@/pages/Register'
 import Personal from '@/pages/Personal/Personal'
 import Evaluation from '@/pages/Evaluation/Evaluation'
+import Message from '@/pages/Message/Message'
 
 // 二级路由
 import Publish from '@/pages/ParttimeJob/Publish'
@@ -17,6 +18,7 @@ import Identification from '@/pages/Personal/Identification'
 import ResetPsw from '@/pages/Personal/ResetPsw'
 import Contact from '@/pages/Personal/Contact'
 import PersonalInfomation from '@/pages/Personal/PersonalInfomation'
+import MessageDetail from '@/pages/Message/MessageDetail'
 
 // 三级路由
 import StudentsInfo from '@/pages/Detail/StudentsInfo'
@@ -25,6 +27,10 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/',
+      redirect: '/home'
+    },
     {
       path: '/login',
       name: 'Login',
@@ -39,6 +45,16 @@ export default new Router({
       path: '/home',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/message',
+      name: 'Message',
+      component: Message
+    },
+    {
+      path: '/message/:messageId',
+      name: 'MessageDetail',
+      component: MessageDetail
     },
     {
       path: '/personal',
