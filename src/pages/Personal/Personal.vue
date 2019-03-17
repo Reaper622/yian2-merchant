@@ -91,7 +91,7 @@ export default {
               // 回到登录页面
               this.$router.replace('/login')
               // 清除Vuex中的用户数据
-              this.$store.commit('userState', null)
+              this.$store.commit('logoutState', null)
             }
           })
       })

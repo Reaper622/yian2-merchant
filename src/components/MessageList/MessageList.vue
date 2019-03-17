@@ -46,9 +46,7 @@ export default {
       this.$axios.post('message/getMessageTitleList.do', qs.stringify({
         pageNum: '',
         pageSize: ''
-      }), {
-        withCredentials: true
-      })
+      }))
         .then((res) => {
           this.normalizeList(res)
           // this.$refs.scroll.refresh()

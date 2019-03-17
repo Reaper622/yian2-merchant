@@ -23,6 +23,7 @@ export default () => {
       logoutState (state) { // 第一个参数为state，第二个为传递的参数
         // 删除sessionStorage内存储的userId
         window.sessionStorage.removeItem('uid')
+        window.sessionStorage.removeItem('user')
         state.user = null
       },
       userState (state, user) {

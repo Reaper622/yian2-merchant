@@ -29,6 +29,23 @@ Axios.defaults.baseURL = 'http://www.equator8848.xyz:8080/yian2'
 // 设置Axios携带凭证Cookie
 Axios.defaults.withCredentials = true
 Vue.prototype.$axios = Axios
+
+// 路由守卫，检测是否登录
+router.beforeEach((to, from, next) => {
+  console.log(to.path)
+  // 若是前往登录与注册页面
+  if (to.path === '/login' || to.path === '/register') {
+    next()
+  } else {
+    // 若未登录，前往登录页面
+    if (window.sessionStorage.getItem('uid') === null) {
+      next('/login')
+    } else { // 若已登录，跳转至目标地址
+      next()
+    }
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
