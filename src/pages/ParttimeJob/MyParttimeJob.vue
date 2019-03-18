@@ -240,12 +240,7 @@ export default {
 
 <style lang="stylus" scoped>
   @import '~@/assets/styles/varibles'
-  .outWrapper
-    bottom .88rem
-    width 100%
-    overflow hidden
-    z-index 1
-    .content
-      height auto
-      padding-bottom .88rem
+  .content
+    height auto
+    padding-bottom .88rem
 </style>

@@ -46,6 +46,10 @@ router.beforeEach((to, from, next) => {
   }
 })
 
+window.addEventListener('popstate', function (e) {
+  router.isBack = true
+}, false)
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
