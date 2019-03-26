@@ -1,32 +1,34 @@
 <template>
-  <div>
+  <div class="wrapper">
     <m-header
     :title="title"
     :isBack="true"></m-header>
-    <div class="user-info border-bottom">
-      <img :src="user.icon">
-      <span>{{user.name}}</span>
-    </div>
-    <div class="evaluation-num">
-      <div class="flex-item">
-        <img class="face-img" src="@/assets/images/good.png">
-        好评 {{goodNum}}
+    <div class="content">
+      <div class="user-info border-bottom">
+        <img :src="user.icon">
+        <span>{{user.name}}</span>
       </div>
-      <div class="flex-item">
-        <img class="face-img" src="@/assets/images/middle.png">
-        中评 {{middleNum}}
+      <div class="evaluation-num">
+        <div class="flex-item">
+          <img class="face-img" src="@/assets/images/good.png">
+          好评 {{goodNum}}
+        </div>
+        <div class="flex-item">
+          <img class="face-img" src="@/assets/images/middle.png">
+          中评 {{middleNum}}
+        </div>
+        <div class="flex-item">
+          <img class="face-img" src="@/assets/images/bad.png">
+          差评 {{badNum}}
+        </div>
       </div>
-      <div class="flex-item">
-        <img class="face-img" src="@/assets/images/bad.png">
-        差评 {{badNum}}
+      <div class="tab">
+        <div class="tab-item" :class="[isSelected ? activeItem: blankItem]" @click="tabLeftClick">Ta收到的</div>
+        <div class="tab-item" :class="[!isSelected ? activeItem: blankItem]" @click="tabRightClick">Ta发出的</div>
       </div>
-    </div>
-    <div class="tab">
-      <div class="tab-item" :class="[isSelected ? activeItem: blankItem]" @click="tabLeftClick">Ta收到的</div>
-      <div class="tab-item" :class="[!isSelected ? activeItem: blankItem]" @click="tabRightClick">Ta发出的</div>
-    </div>
-    <div class="evaluation-wrapper">
-      <evaluation-panel :evaluationList="activeList"></evaluation-panel>
+      <div class="evaluation-wrapper">
+        <evaluation-panel :evaluationList="activeList"></evaluation-panel>
+      </div>
     </div>
   </div>
 </template>
@@ -43,7 +45,7 @@ export default {
   },
   data () {
     return {
-      title: 'Ta的评价',
+      title: '我的评价',
       isSelected: true,
       activeItem: 'active-item',
       blankItem: 'blank-item',
@@ -131,6 +133,9 @@ export default {
 
 <style lang="stylus" scoped>
 @import '~@/assets/styles/varibles.styl'
+  .content
+    height auto
+    padding-bottom $tabbarHeight
   .user-info
     height 1rem
     line-height 1rem

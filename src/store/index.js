@@ -9,7 +9,9 @@ export default () => {
       // 用户信息
       user: {},
       // 兼职类型
-      jobTypeList: []
+      jobTypeList: [],
+      // 学校列表
+      schoolList: []
     },
     mutations: {
       // 登录存储
@@ -32,11 +34,15 @@ export default () => {
       jobTypeList (state, list) {
         window.sessionStorage.setItem('jobTypeList', JSON.stringify(list))
         state.jobTypeList = list
+      },
+      schoolList (state, list) {
+        window.sessionStorage.setItem('schoolList', JSON.stringify(list))
+        state.schoolList = list
       }
     },
     getters: {
       getUser (state) {
-        if (!state.user) {
+        if (!state.user.uid) {
           return JSON.parse(window.sessionStorage.getItem('user'))
         }
         return state.user
@@ -46,6 +52,12 @@ export default () => {
           return JSON.parse(window.sessionStorage.getItem('jobTypeList'))
         }
         return state.jobTypeList
+      },
+      getSchoolList (state) {
+        if (!state.schoolList[0]) {
+          return JSON.parse(window.sessionStorage.getItem('schoolList'))
+        }
+        return state.schoolList
       }
     }
   })

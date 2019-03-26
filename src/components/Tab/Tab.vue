@@ -27,7 +27,7 @@ export default {
     position fixed
     bottom 0
     width 100%
-    height .88rem
+    height $tabbarHeight
     background #fff
     .tab
       display flex

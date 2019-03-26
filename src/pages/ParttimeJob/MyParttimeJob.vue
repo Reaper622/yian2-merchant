@@ -242,5 +242,5 @@ export default {
   @import '~@/assets/styles/varibles'
   .content
     height auto
-    padding-bottom .88rem
+    padding-bottom $tabbarHeight
 </style>

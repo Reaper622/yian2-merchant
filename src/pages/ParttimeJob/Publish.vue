@@ -45,7 +45,7 @@
     <hr>
     <div class="content-wrapper1">
       <div class="item-title1">学校ID</div>
-      <input class="item-detail1" type="text" v-model="list.schoolId">
+      <div id="trigger6" class="item-detail2">&nbsp;</div>
     </div>
     <hr>
     <div class="change-button" @click="publish(0)">发布兼职</div>
@@ -72,7 +72,8 @@ export default {
         hireNum: null,
         schoolId: null
       },
-      typeList: []
+      typeList: [],
+      schoolList: []
     }
   },
   components: {
@@ -80,7 +81,8 @@ export default {
   },
   mounted () {
     this.typeList = this.$store.getters.getJobTypeList
-    console.log(this.typeList)
+    this.schoolList = this.$store.getters.getSchoolList
+    console.log(this.schoolList)
     let _this = this
     let mobileSelect4 = new MobileSelect({// eslint-disable-line
       trigger: '#trigger4',
@@ -113,6 +115,21 @@ export default {
       callback: function (indexArr, data) {
         console.log(indexArr, data[0])
         _this.list.jobType = data[0].id
+      }
+    })
+    let mobileSelect6 = new MobileSelect({// eslint-disable-line
+      trigger: '#trigger6',
+      title: '选择学校',
+      wheels: [
+        {data: _this.schoolList}
+      ],
+      keyMap: {
+        id: 'code',
+        value: 'name'
+      },
+      callback: function (indexArr, data) {
+        console.log(indexArr, data[0])
+        _this.list.schoolId = data[0].code
       }
     })
   },

@@ -2,7 +2,9 @@
   <div>
     <m-header :title="'我的消息'"></m-header>
     <img src="@/assets/images/message.png" class="banner">
-    <message-list></message-list>
+    <div class="content">
+      <message-list></message-list>
+    </div>
   </div>
 </template>
 
@@ -30,4 +32,7 @@ export default {
     height 2.82rem
     margin-top .1rem
     margin-bottom .14rem
+  .content
+    height  auto
+    padding-bottom $tabbarHeight
 </style>

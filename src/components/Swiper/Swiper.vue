@@ -44,6 +44,7 @@ export default {
     background #ffffff
   .wrapper
     background #eee
+    height 3rem
     .swiper-img
       width 100%
       heigth 100%

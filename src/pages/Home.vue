@@ -47,6 +47,7 @@ export default {
   mounted () {
     this.getJobTypeList()
     this.getBanner()
+    this.getSchoolList()
   },
   methods: {
     // 请求兼职类型以及其对应的代码,储存在Vuex中
@@ -63,6 +64,13 @@ export default {
           console.log(res)
           this.swiperListDemo = res.data.data
         })
+    },
+    // 获取大学列表
+    getSchoolList () {
+      this.$axios.get('/school/getSchoolList.do')
+        .then(res => {
+          this.$store.commit('schoolList', res.data.data.list)
+        })
     }
   }
 }
@@ -70,9 +78,10 @@ export default {
 
 <style lang="stylus" scoped>
   @import '~@/assets/styles/varibles.styl'
-  .swiper-container
+  .main
     width 100%
-    heigth 2rem
+    height 100%
+    overflow hidden
   .menu
     width 100%
     margin-top 2rem
