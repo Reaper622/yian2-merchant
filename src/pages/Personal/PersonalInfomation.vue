@@ -3,19 +3,21 @@
     <m-header
     :title="'我的个人信息'"
     :isBack="true"></m-header>
-    <div class="avatarArea">
-      <img :src="this.icon" class="avatar">
-      <div class="changeAvatarBtn" @click="toChangeAvatar(true)">修改头像</div>
+    <div class="content">
+      <div class="avatarArea">
+        <img :src="this.icon" class="avatar">
+        <div class="changeAvatarBtn" @click="toChangeAvatar(true)">修改头像</div>
+      </div>
+      <div class="infoArea">
+        <input class="infoInput" type="text" placeholder="姓名" v-model="name">
+        <input class="infoInput" type="text" placeholder="商户名称" v-model="unit">
+        <input class="infoInput" type="text" placeholder="电话" v-model="phone">
+        <input class="infoInput" type="text" placeholder="QQ" v-model="qQ">
+        <input class="infoInput" type="text" placeholder="微信" v-model="wX">
+      </div>
+      <div class="btn" @click="checkInfo">保存</div>
+      <div class="cover" v-show="avatarChange" @click="toChangeAvatar(false)"></div>
     </div>
-    <div class="infoArea">
-      <input class="infoInput" type="text" placeholder="姓名" v-model="name">
-      <input class="infoInput" type="text" placeholder="商户名称" v-model="unit">
-      <input class="infoInput" type="text" placeholder="电话" v-model="phone">
-      <input class="infoInput" type="text" placeholder="QQ" v-model="qQ">
-      <input class="infoInput" type="text" placeholder="微信" v-model="wX">
-    </div>
-    <div class="btn" @click="checkInfo">保存</div>
-    <div class="cover" v-show="avatarChange" @click="toChangeAvatar(false)"></div>
     <transition name="bounce">
       <div class="AvatarSelector" v-show="avatarChange">
         <swiper :options="swiperOption" class="swiper-container">
@@ -168,6 +170,9 @@ export default {
 
 <style lang="stylus" scoped>
   @import '~@/assets/styles/varibles'
+  .content
+    height auto
+    padding-bottom $tabbarHeight
   .avatarArea
     width 100%
     height 3rem
@@ -252,7 +257,7 @@ export default {
     margin .2rem 37.5% 0
   .selectBtn
     width 90%
-    height rem
+    height 1rem
     line-height 1rem
     margin .5rem 5%
     text-align center

@@ -3,59 +3,61 @@
     <m-header
     :title="'草稿详情'"
     :isBack="true"></m-header>
-    <div class="content-wrapper1">
-      <div class="item-title1">兼职简介</div>
-      <input class="item-detail1" type="text" v-model="list.jobSummary">
-    </div>
-    <hr>
-    <div class="content-wrapper1">
-      <div class="item-title1">兼职时间</div>
-      <input class="item-detail1" type="text" v-model="list.jobTime">
-    </div>
-    <hr>
-    <div class="content-wrapper1">
-      <div class="item-title1">兼职地点</div>
-      <input class="item-detail1" type="text" v-model="list.address">
-    </div>
-    <hr>
-    <div class="content-wrapper1">
-      <div class="item-title1">招聘人数</div>
-      <input class="item-detail1" type="text" v-model="list.hireNum">
-    </div>
-    <hr>
-    <div class="content-wrapper1">
-      <div class="item-title1">兼职类型</div>
-      <div id="trigger5" class="item-detail2" ref="jobTypeTrigger">&nbsp;</div>
-    </div>
-    <hr>
-    <div class="content-wrapper1">
-      <div class="item-title1">报酬类型</div>
-      <div id="trigger4" class="item-detail2" ref="rewardTypeTrigger">&nbsp;</div>
-    </div>
-    <hr>
-    <div class="content-wrapper1">
-      <div class="item-title1">单位报酬</div>
-      <input class="item-detail1" type="text" v-model="list.reward">
-    </div>
-    <hr>
-    <div class="content-wrapper1">
-      <div class="item-title1">兼职详情</div>
-      <textarea class="item-detail1" cols="30" rows="3" v-model="list.details"></textarea>
-    </div>
-    <hr>
-    <div class="content-wrapper1">
-      <div class="item-title1">学校ID</div>
-      <input class="item-detail1" type="text" v-model="list.schoolId">
-    </div>
-    <div class="buttonLine">
-      <div class="btn" id="saveBtn" @click="saveDraft">
-        <p>保存</p>
+    <div class="content">
+      <div class="content-wrapper1">
+        <div class="item-title1">兼职简介</div>
+        <input class="item-detail1" type="text" v-model="list.jobSummary">
       </div>
-      <div class="btn" id="publishBtn" @click="publishDraft">
-        <p>发布</p>
+      <hr>
+      <div class="content-wrapper1">
+        <div class="item-title1">兼职时间</div>
+        <input class="item-detail1" type="text" v-model="list.jobTime">
       </div>
-      <div class="btn" id="deleteBtn" @click="deleteDraft">
-        <p>删除</p>
+      <hr>
+      <div class="content-wrapper1">
+        <div class="item-title1">兼职地点</div>
+        <input class="item-detail1" type="text" v-model="list.address">
+      </div>
+      <hr>
+      <div class="content-wrapper1">
+        <div class="item-title1">招聘人数</div>
+        <input class="item-detail1" type="text" v-model="list.hireNum">
+      </div>
+      <hr>
+      <div class="content-wrapper1">
+        <div class="item-title1">兼职类型</div>
+        <div id="trigger5" class="item-detail2" ref="jobTypeTrigger">&nbsp;</div>
+      </div>
+      <hr>
+      <div class="content-wrapper1">
+        <div class="item-title1">报酬类型</div>
+        <div id="trigger4" class="item-detail2" ref="rewardTypeTrigger">&nbsp;</div>
+      </div>
+      <hr>
+      <div class="content-wrapper1">
+        <div class="item-title1">单位报酬</div>
+        <input class="item-detail1" type="text" v-model="list.reward">
+      </div>
+      <hr>
+      <div class="content-wrapper1">
+        <div class="item-title1">兼职详情</div>
+        <textarea class="item-detail1" cols="30" rows="3" v-model="list.details"></textarea>
+      </div>
+      <hr>
+      <div class="content-wrapper1">
+        <div class="item-title1">学校ID</div>
+        <input class="item-detail1" type="text" v-model="list.schoolId">
+      </div>
+      <div class="buttonLine">
+        <div class="btn" id="saveBtn" @click="saveDraft">
+          <p>保存</p>
+        </div>
+        <div class="btn" id="publishBtn" @click="publishDraft">
+          <p>发布</p>
+        </div>
+        <div class="btn" id="deleteBtn" @click="deleteDraft">
+          <p>删除</p>
+        </div>
       </div>
     </div>
   </div>
@@ -262,6 +264,9 @@ export default {
 
 <style lang="stylus" scoped>
   @import '~@/assets/styles/varibles'
+  .content
+    height auto
+    padding-bottom $tabbarHeight
   .content-wrapper1
       display flex
       justify-content space-between

@@ -3,40 +3,42 @@
     <m-header
     :title="'兼职详情'"
     :isBack="true"></m-header>
-    <div class="item">
-      <div class="item-title">{{list.jobSummary}}</div>
-      <div class="item-location">{{list.address}}</div>
-      <div class="row-wrapper">
-        <span class="grey">基本工资：</span>
-        <span class="black">{{list.reward}}元/{{list.rewardType}}</span>
+    <div class="content">
+      <div class="item">
+        <div class="item-title">{{list.jobSummary}}</div>
+        <div class="item-location">{{list.address}}</div>
+        <div class="row-wrapper">
+          <span class="grey">基本工资：</span>
+          <span class="black">{{list.reward}}元/{{list.rewardType}}</span>
+        </div>
+        <div class="color-block"></div>
+        <div class="row-wrapper">
+          <span class="grey">兼职类型：</span>
+          <span class="black">{{list.jobType}}</span>
+        </div>
+        <div class="row-wrapper">
+          <span class="grey">招聘人数：</span>
+          <span class="black">{{list.hireNum}}</span>
+        </div>
+        <div class="row-wrapper">
+          <span class="grey">已聘人数：</span>
+          <span class="black">{{list.nowNum}}</span>
+        </div>
+        <div class="color-block"></div>
+        <div class="detail-title">工作内容：</div>
+        <div class="detail">{{list.details}}</div>
+        <div class="tip">若发现实际工作内容与上述描述不符，请您提高警惕并第一时间向我们举报</div>
+        <div class="color-block"></div>
       </div>
-      <div class="color-block"></div>
-      <div class="row-wrapper">
-        <span class="grey">兼职类型：</span>
-        <span class="black">{{list.jobType}}</span>
+      <div class="operationArea" >
+        <div class="btn stop" v-show="isShowStop" @click="stopRecruit()">停止招聘</div>
+        <div class="btn evaluate" v-show="isShowEvaluate" @click="toEvaluate()">前去评价</div>
+        <div class="btn start" v-show="isShowStart" @click="startIt()">开工</div>
+        <div class="btn rePublish" v-show="isShowRePublish" @click="rePublish()">重新发布</div>
+        <div class="btn checkPeople" v-show="isShowPeople" @click="checkStudent()">查看名单</div>
       </div>
-      <div class="row-wrapper">
-        <span class="grey">招聘人数：</span>
-        <span class="black">{{list.hireNum}}</span>
-      </div>
-      <div class="row-wrapper">
-        <span class="grey">已聘人数：</span>
-        <span class="black">{{list.nowNum}}</span>
-      </div>
-      <div class="color-block"></div>
-      <div class="detail-title">工作内容：</div>
-      <div class="detail">{{list.details}}</div>
-      <div class="tip">若发现实际工作内容与上述描述不符，请您提高警惕并第一时间向我们举报</div>
       <div class="color-block"></div>
     </div>
-    <div class="operationArea" >
-      <div class="btn stop" v-show="isShowStop" @click="stopRecruit()">停止招聘</div>
-      <div class="btn evaluate" v-show="isShowEvaluate" @click="toEvaluate()">前去评价</div>
-      <div class="btn start" v-show="isShowStart" @click="startIt()">开工</div>
-      <div class="btn rePublish" v-show="isShowRePublish" @click="rePublish()">重新发布</div>
-      <div class="btn checkPeople" v-show="isShowPeople" @click="checkStudent()">查看名单</div>
-    </div>
-    <div class="color-block"></div>
   </div>
 </template>
 
@@ -198,6 +200,9 @@ export default {
 <style lang="stylus" scoped>
 @import '~@/assets/styles/varibles'
 @import '~@/assets/styles/mixin'
+  .content
+    height auto
+    padding-bottom $tabbarHeight
   .item-title
     font-size .38rem
     padding .4rem .4rem

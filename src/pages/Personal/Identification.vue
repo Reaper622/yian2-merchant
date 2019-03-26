@@ -133,11 +133,11 @@ export default {
     padding-bottom $tabbarHeight
   .course
     width 90%
-    height 3.5rem
-    margin .5rem 5%
+    height 2rem
+    margin .2rem 5%
     text-align center
     .course-img
-      width 30%
+      width 15%
       margin .2rem 35%
     .course-tip
       margin .2rem 0

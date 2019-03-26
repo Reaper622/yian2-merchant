@@ -161,7 +161,7 @@ export default {
       .item-margin-bottom
         margin-bottom .3rem
       .logout
-        margin-top .7rem
+        margin-top .3rem
         padding .3rem 0
         text-align center
         color $color-danger
