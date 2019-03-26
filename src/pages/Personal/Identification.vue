@@ -3,10 +3,17 @@
     <m-header
     :title="'认证信息'"
     :isBack="true"></m-header>
-    <div class="course"></div>
+    <div class="course">
+      <img class="course-img" src="@/assets/images/course_top.png" />
+      <p class="course-tip">请上传您的营业执照,注意无遮挡</p>
+    </div>
     <div class="btn apply">申请认证</div>
     <div class="picIdentify">
-      <img :src="imgSrc" alt="认证图片" v-show="isUpload">
+      <img class="is-identify-pic" :src="imgSrc" alt="认证图片" v-if="isUpload">
+      <div class="identity-content" v-else>
+        <img class="identity-pic" src="@/assets/images/identity.png" />
+        <p class="identity-tip">待上传认证图片...</p>
+      </div>
     </div>
     <div class="btn uploadPic" @click="uploadPic">上传认证照片</div>
     <input type="file" ref="file" name="file" @change="uploadToServer" accept="image/png,image/jpeg,image/jpg" class="uploadInput">
@@ -75,8 +82,14 @@ export default {
   .course
     width 90%
     height 3.5rem
-    border 1px solid black
     margin .5rem 5%
+    text-align center
+    .course-img
+      width 30%
+      margin .2rem 35%
+    .course-tip
+      margin .2rem 0
+      color $color-info
   .btn
     width 90%
     height 1rem
@@ -85,6 +98,7 @@ export default {
     color $color-text
     font-size $font-size-medium
     margin .5rem 5%
+    border-radius .3rem
   .apply
     background $color-warning
   .uploadPic
@@ -94,11 +108,20 @@ export default {
     height 3.5rem
     background $color-info
     margin .5rem 5%
-    img
+    .is-identify-pic
       width 100%
       height 100%
   // 隐藏file input
   .uploadInput
     position absolute
     top -999999rem
+  .identity-content
+    width 100%
+    height 100%
+    text-align center
+    color #ffffff
+  .identity-pic
+    width 40%
+    height auto
+    margin 0 30%
 </style>
