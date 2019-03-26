@@ -8,15 +8,16 @@
         <img class="course-img" src="@/assets/images/course_top.png" />
         <p class="course-tip">请上传您的营业执照,注意无遮挡</p>
       </div>
-      <div class="btn apply">申请认证</div>
+      <div class="btn uploadPic" @click="uploadPic">上传认证照片</div>
       <div class="picIdentify">
         <img class="is-identify-pic" :src="imgSrc" alt="认证图片" v-if="isUpload">
         <div class="identity-content" v-else>
           <img class="identity-pic" src="@/assets/images/identity.png" />
           <p class="identity-tip">待上传认证图片...</p>
+          <div id="trigger"></div>
         </div>
       </div>
-      <div class="btn uploadPic" @click="uploadPic">上传认证照片</div>
+      <div class="btn apply" @click="chooseSchoolList">申请认证</div>
       <input type="file" ref="file" name="file" @change="uploadToServer" accept="image/png,image/jpeg,image/jpg" class="uploadInput">
       <div class="btn checkList" @click="toList">查看我的认证列表</div>
     </div>
@@ -24,6 +25,8 @@
 </template>
 
 <script>
+import qs from 'qs'
+import MobileSelect from 'mobile-select'
 import MHeader from '@/components/MHeader/MHeader'
 export default {
   name: 'Identification',
@@ -36,6 +39,41 @@ export default {
   },
   components: {
     MHeader
+  },
+  mounted () {
+    let schoolList = this.$store.getters.getSchoolList
+    let _this = this
+    let mobileSelect1 = new MobileSelect({// eslint-disable-line
+      trigger: '#trigger',
+      title: '选择报酬类型',
+      wheels: [
+        {
+          data: schoolList
+        }
+      ],
+      keyMap: {
+        id: 'id',
+        value: 'name'
+      },
+      callback: function (indexArr, data) {
+        console.log(data[0])
+        _this.$axios.post('/merchant/audit/applyAudit.do', qs.stringify({
+          schoolId: data[0].code,
+          schoolName: data[0].name
+        }))
+          .then(res => {
+            if (res.data.status === 1) {
+              _this.$layer.closeAll()
+              _this.$layer.msg(res.data.msg)
+              _this.toList()
+            } else {
+              _this.$layer.closeAll()
+              _this.$layer.msg(res.data.msg)
+            }
+          })
+      }
+    })
+    this.mobileSelect1 = mobileSelect1
   },
   methods: {
     uploadPic () {
@@ -75,6 +113,10 @@ export default {
             this.$layer.msg(res.data.msg)
           }
         })
+    },
+    // 选择学校
+    chooseSchoolList () {
+      this.mobileSelect1.show()
     },
     // 跳转到审核列表
     toList () {
