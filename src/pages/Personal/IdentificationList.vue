@@ -5,7 +5,10 @@
     :isBack="true"></m-header>
     <div class="content">
       <div class="item" v-for="(item,index) in list" :key="index">
-        <img src="" alt="">
+        <img class="schoolIcon" src="./logo.png" alt="">
+        <span class="schoolname">{{item.schoolName}}</span>
+        <img class="authImg" src="@/assets/images/auth.png" />
+        <span class="authMsg">{{item.status === 0 ? '待审核' : (item.status === 1 ? '已通过' : '未通过')}}</span>
       </div>
     </div>
   </div>
@@ -50,9 +53,24 @@ export default {
     height auto
     padding-bottom $tabbarHeight
   .item
+    position relative
     width 90%
     height 2rem
     margin .5rem 5%
     border-radius .5rem
     background #ffffff
+    line-height 2rem
+    .schoolIcon
+      width 1.5rem
+      height 1.5rem
+      margin .25rem .2rem
+    .authImg
+      position absolute
+      width auto
+      height .8rem
+      margin .6rem 0
+      right 1.2rem
+    .authMsg
+      position absolute
+      right .2rem
 </style>
