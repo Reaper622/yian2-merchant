@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import BScroll from 'better-scroll'
 import qs from 'qs'
 import MHeader from '@/components/MHeader/MHeader'
 import FlodingBoard from '@/components/FlodingBoard/FlodingBoard'
