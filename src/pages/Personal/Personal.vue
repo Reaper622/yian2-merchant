@@ -20,10 +20,18 @@
           </div>
         </router-link>
       </div>
+      <div class="item border-bottom">
+        <router-link to="/personal/resetpsw">
+          <div>
+            账号安全
+            <img class="mini-image" src="@/assets/images/password.png">
+          </div>
+        </router-link>
+      </div>
       <div class="item item-margin-bottom">
         <router-link to="/personal/identification">
           <div>
-            账号安全与认证
+            认证信息
             <img class="mini-image2" src="@/assets/images/2.png">
           </div>
         </router-link>
