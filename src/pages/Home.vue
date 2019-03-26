@@ -3,7 +3,7 @@
     <m-header
       :title="'首页'"
       :isBack="false"></m-header>
-    <swiper :swiperList="swiperListDemo"></swiper>
+    <swiper :swiperList="swiperListDemo" class="swiper-container"></swiper>
     <div class="menu">
       <div class="menu-panel">
         <router-link to="/parttimejob/publish">
@@ -37,10 +37,7 @@ export default {
   name: 'Home',
   data () {
     return {
-      swiperListDemo: [{
-        id: '0001',
-        imgUrl: '../../static/images/swiper.png'
-      }]
+      swiperListDemo: []
     }
   },
   components: {
@@ -49,6 +46,7 @@ export default {
   },
   mounted () {
     this.getJobTypeList()
+    this.getBanner()
   },
   methods: {
     // 请求兼职类型以及其对应的代码,储存在Vuex中
@@ -57,6 +55,14 @@ export default {
         .then(res => {
           this.$store.commit('jobTypeList', res.data.data.list)
         })
+    },
+    // 获取头部banner图
+    getBanner () {
+      this.$axios.post('/banner/getMerchantBanner.do')
+        .then(res => {
+          console.log(res)
+          this.swiperListDemo = res.data.data
+        })
     }
   }
 }
@@ -64,6 +70,9 @@ export default {
 
 <style lang="stylus" scoped>
   @import '~@/assets/styles/varibles.styl'
+  .swiper-container
+    width 100%
+    heigth 2rem
   .menu
     width 100%
     margin-top 2rem

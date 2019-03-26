@@ -3,7 +3,7 @@
     <swiper :options="swiperOption" v-if="showSwiper">
       <!-- slides -->
       <swiper-slide v-for="item of swiperList" :key="item.id">
-        <img class="swiper-img" :src="item.imgUrl">
+        <img class="swiper-img" :src="item.iconUrl">
       </swiper-slide>
       <!-- Optional controls -->
       <div class="swiper-pagination" slot="pagination"></div>
@@ -41,9 +41,10 @@ export default {
 
 <style lang="stylus" scoped>
   .wrapper >>> .swiper-pagination-bullet-active
-    background: #ffffff
+    background #ffffff
   .wrapper
-    background: #eee
+    background #eee
     .swiper-img
-      width: 100%
+      width 100%
+      heigth 100%
 </style>
