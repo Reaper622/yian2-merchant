@@ -3,40 +3,40 @@
     <m-header
       :title="'我的兼职'"
       :isBack="true"></m-header>
-    <div class="content">
-      <floding-board
-      :title="'待审核兼职'"
-      :content="waitToAuditJobs"
-      @beClicked="toClick(0)"></floding-board>
-      <floding-board
-      :title="'展示中的兼职'"
-      :content="nowShowingJobs"
-      @beClicked="toClick(1)"></floding-board>
-      <floding-board
-      :title="'未通过兼职'"
-      :content="noPassJobs"
-      @beClicked="toClick(2)"></floding-board>
-      <floding-board
-      :title="'满员的兼职'"
-      :content="fullJobs"
-      @beClicked="toClick(3)"></floding-board>
-      <floding-board
-      :title="'停止的兼职'"
-      :content="stopedJobs"
-      @beClicked="toClick(4)"></floding-board>
-      <floding-board
-      :title="'进行中的兼职'"
-      :content="nowRunningJobs"
-      @beClicked="toClick(5)"></floding-board>
-      <floding-board
-      :title="'待评价的兼职'"
-      :content="toEvaluateJobs"
-      @beClicked="toClick(6)"></floding-board>
-      <floding-board
-      :title="'已完成的兼职'"
-      :content="finishedJobs"
-      @beClicked="toClick(7)"></floding-board>
-    </div>
+      <div class="content">
+        <floding-board
+        :title="'待审核兼职'"
+        :content="waitToAuditJobs"
+        @beClicked="toClick(0)"></floding-board>
+        <floding-board
+        :title="'展示中的兼职'"
+        :content="nowShowingJobs"
+        @beClicked="toClick(1)"></floding-board>
+        <floding-board
+        :title="'未通过兼职'"
+        :content="noPassJobs"
+        @beClicked="toClick(2)"></floding-board>
+        <floding-board
+        :title="'满员的兼职'"
+        :content="fullJobs"
+        @beClicked="toClick(3)"></floding-board>
+        <floding-board
+        :title="'停止的兼职'"
+        :content="stopedJobs"
+        @beClicked="toClick(4)"></floding-board>
+        <floding-board
+        :title="'进行中的兼职'"
+        :content="nowRunningJobs"
+        @beClicked="toClick(5)"></floding-board>
+        <floding-board
+        :title="'待评价的兼职'"
+        :content="toEvaluateJobs"
+        @beClicked="toClick(6)"></floding-board>
+        <floding-board
+        :title="'已完成的兼职'"
+        :content="finishedJobs"
+        @beClicked="toClick(7)"></floding-board>
+      </div>
   </div>
 </template>
 
@@ -74,15 +74,6 @@ export default {
     FlodingBoard
   },
   mounted () {
-    this.$nextTick(() => {
-      if (!this.scroll) {
-        this.scroll = new BScroll(this.$refs.wrapper, {})
-      } else if (!this.$refs.wrapper) {
-        return false
-      } else {
-        this.scroll.refresh()
-      }
-    })
   },
   methods: {
     toClick (num) {

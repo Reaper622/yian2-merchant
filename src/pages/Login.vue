@@ -143,7 +143,7 @@ export default {
       justify-content center
       .checkbox-title
         color $color-input-grey
-      #color-input-blue +label{
+      #color-input-blue + label{
         display block
         width .28rem
         height .28rem

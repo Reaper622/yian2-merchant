@@ -38,10 +38,8 @@ router.beforeEach((to, from, next) => {
   } else {
     // 若未登录，前往登录页面
     if (!store.getters.getUser.uid) {
-      console.log(store.getters.getUser)
       next('/login')
     } else { // 若已登录，跳转至目标地址
-      console.log(store.getters.getUser.uid)
       next()
     }
   }

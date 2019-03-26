@@ -21,6 +21,7 @@ const PersonalInfomation = () => import('@/pages/Personal/PersonalInfomation')
 const MessageDetail = () => import('@/pages/Message/MessageDetail')
 // 三极路由
 const StudentsInfo = () => import('@/pages/Detail/StudentsInfo')
+const IdentificationList = () => import('@/pages/Personal/IdentificationList')
 
 // // 一级路由
 // import Login from '@/pages/Login'
@@ -117,6 +118,11 @@ export default new Router({
       path: '/personal/identification',
       name: 'Identification',
       component: Identification
+    },
+    {
+      path: '/personal/identification/list',
+      name: 'IdentificationList',
+      component: IdentificationList
     },
     {
       path: '/personal/resetpsw',

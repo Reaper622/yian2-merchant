@@ -4,7 +4,7 @@
     :title="'个人中心'"
     :isBack="true"></m-header>
     <div class="logoContainer">
-      <div class="logo">
+      <div class="logo" :style="{backgroundImage:'url('+ require('@/assets/images/longLogo.png') +')'}">
         <img src="" alt="">
       </div>
       <div class="avatar-box">
@@ -118,7 +118,6 @@ export default {
       border-radius .24rem
       .logo
         flex-grow 7
-        background-image url('/static/images/appLogo.png')
         background-repeat no-repeat
         background-size 100% 100%
         -moz-background-size 100% 100%

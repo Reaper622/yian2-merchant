@@ -3,20 +3,23 @@
     <m-header
     :title="'认证信息'"
     :isBack="true"></m-header>
-    <div class="course">
-      <img class="course-img" src="@/assets/images/course_top.png" />
-      <p class="course-tip">请上传您的营业执照,注意无遮挡</p>
-    </div>
-    <div class="btn apply">申请认证</div>
-    <div class="picIdentify">
-      <img class="is-identify-pic" :src="imgSrc" alt="认证图片" v-if="isUpload">
-      <div class="identity-content" v-else>
-        <img class="identity-pic" src="@/assets/images/identity.png" />
-        <p class="identity-tip">待上传认证图片...</p>
+    <div class="content">
+      <div class="course">
+        <img class="course-img" src="@/assets/images/course_top.png" />
+        <p class="course-tip">请上传您的营业执照,注意无遮挡</p>
       </div>
+      <div class="btn apply">申请认证</div>
+      <div class="picIdentify">
+        <img class="is-identify-pic" :src="imgSrc" alt="认证图片" v-if="isUpload">
+        <div class="identity-content" v-else>
+          <img class="identity-pic" src="@/assets/images/identity.png" />
+          <p class="identity-tip">待上传认证图片...</p>
+        </div>
+      </div>
+      <div class="btn uploadPic" @click="uploadPic">上传认证照片</div>
+      <input type="file" ref="file" name="file" @change="uploadToServer" accept="image/png,image/jpeg,image/jpg" class="uploadInput">
+      <div class="btn checkList" @click="toList">查看我的认证列表</div>
     </div>
-    <div class="btn uploadPic" @click="uploadPic">上传认证照片</div>
-    <input type="file" ref="file" name="file" @change="uploadToServer" accept="image/png,image/jpeg,image/jpg" class="uploadInput">
   </div>
 </template>
 
@@ -72,6 +75,10 @@ export default {
             this.$layer.msg(res.data.msg)
           }
         })
+    },
+    // 跳转到审核列表
+    toList () {
+      this.$router.push('/personal/identification/list')
     }
   }
 }
@@ -79,6 +86,9 @@ export default {
 
 <style lang="stylus" scoped>
   @import'~@/assets/styles/varibles'
+  .content
+    height auto
+    padding-bottom $tabbarHeight
   .course
     width 90%
     height 3.5rem
@@ -103,6 +113,8 @@ export default {
     background $color-warning
   .uploadPic
     background $color-theme
+  .checkList
+    background $color-success
   .picIdentify
     width 90%
     height 3.5rem
