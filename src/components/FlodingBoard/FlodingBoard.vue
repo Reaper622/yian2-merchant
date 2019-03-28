@@ -102,6 +102,9 @@ export default {
       font-size $font-size-large-x
       text-align center
       color $color-text
+      white-space nowrap
+      text-overflow ellipsis
+      overflow hidden
     .contentTime
       position absolute
       font-size $font-size-medium
