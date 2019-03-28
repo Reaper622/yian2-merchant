@@ -5,10 +5,10 @@
     :isBack="true"></m-header>
     <div class="content">
       <div class="item" v-for="(item,index) in list" :key="index">
-        <img class="schoolIcon" src="./logo.png" alt="">
-        <span class="schoolname">{{item.schoolName}}</span>
+        <img class="schoolIcon" :src="item.icon" alt="">
+        <span class="schoolname">{{item.authSchool.schoolName}}</span>
         <img class="authImg" src="@/assets/images/auth.png" />
-        <span class="authMsg">{{item.status === 0 ? '待审核' : (item.status === 1 ? '已通过' : '未通过')}}</span>
+        <span class="authMsg">{{item.authSchool.status === 0 ? '待审核' : (item.authSchool.status === 1 ? '已通过' : '未通过')}}</span>
       </div>
     </div>
   </div>
