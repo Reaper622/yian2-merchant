@@ -22,6 +22,7 @@ const MessageDetail = () => import('@/pages/Message/MessageDetail')
 // 三极路由
 const StudentsInfo = () => import('@/pages/Detail/StudentsInfo')
 const IdentificationList = () => import('@/pages/Personal/IdentificationList')
+const StudentEvaluation = () => import('@/pages/Evaluation/StudentEvaluation')
 
 // // 一级路由
 // import Login from '@/pages/Login'
@@ -143,6 +144,11 @@ export default new Router({
       path: '/evaluation',
       name: 'Evaluation',
       component: Evaluation
+    },
+    {
+      path: '/evaluation/student/:id',
+      name: 'StudentEvaluation',
+      component: StudentEvaluation
     }
   ]
 })

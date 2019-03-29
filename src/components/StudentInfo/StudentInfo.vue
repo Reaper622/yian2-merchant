@@ -6,6 +6,7 @@
       <div class="panel contact">{{contact}}</div>
     </div>
     <div class="operationArea">
+      <div class="btn checkEva" @click="checkEva">查看评价</div>
       <div class="btn refuse" @click="refuseIt" v-if="status != 8">拒绝</div>
       <div class="btn evaluate" @click="evaluateIt" v-else>评价</div>
     </div>
@@ -31,6 +32,10 @@ export default {
     evaluateIt () {
       // 触发父级弹出评价框
       this.$emit('evaluate', this.studentId)
+    },
+    // 查看此人的评价
+    checkEva () {
+      this.$router.push('/evaluation/student/' + this.studentId)
     }
   }
 }
@@ -73,14 +78,19 @@ export default {
     .btn
       width 2rem
       height 1rem
-      margin-top .7rem
       text-align center
       line-height 1rem
       color $color-text
       font-size $font-size-medium-x
       border-radius .3rem
+      overflow hidden
+      margin-top .1rem
+      margin-bottom .2rem
   .refuse
     background $color-danger
   .evaluate
     background $color-success
+  .checkEva
+    background $color-theme
+    margin-bottom .1rem
 </style>
