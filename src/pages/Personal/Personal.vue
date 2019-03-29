@@ -140,8 +140,8 @@ export default {
       flex-direction column
       justify-content center
       // text-align center
-      // a
-      //   color black
+      a
+        color black
       .item
         position relative
         padding .3rem 0 .3rem 1.4rem
