@@ -41,6 +41,7 @@ export default {
     MHeader
   },
   mounted () {
+    this.getIdentifiedPic()
     let schoolList = this.$store.getters.getSchoolList
     let _this = this
     let mobileSelect1 = new MobileSelect({// eslint-disable-line
