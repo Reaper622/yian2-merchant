@@ -60,25 +60,29 @@ export default {
   .wrapper
     margin-top .2rem
   .boardBeforeClick
-    width 100%
+    width 95%
+    margin 0 2.5%
     height 1.2rem
     line-height 1.2rem
-    background $color-info
+    background #fff
     text-align center
-    overflow hidden
+    border-radius .2rem
     .iconBeforeClick
       width .5rem
       height .5rem
       float right
       right .2rem
-      color $color-text
+      color $color-theme
   .boardAfterClick
-    width 100%
+    width 95%
+    margin 0 2.5%
     height 1.2rem
     line-height 1.2rem
     background $color-theme
     text-align center
     overflow hidden
+    border-radius .2rem
+    color $color-text
     .iconAfterClick
       width .5rem
       height .5rem
@@ -88,7 +92,6 @@ export default {
       transform-origin: center bottom
       color $color-text
   .titleText
-    color $color-text
     font-size $font-size-large
   .contentItem
     position relative
