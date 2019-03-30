@@ -140,8 +140,8 @@ export default {
     publish (actionNum) {
       console.log(this.list)
       let _this = this
-      if (this.list.jobSummary && this.list.jobTime && this.list.reward && this.list.rewardType && this.list.address &&
-      this.list.details && this.list.jobType && this.list.hireNum && this.list.schoolId) {
+      if (this.list.jobSummary && this.list.jobTime && this.list.reward && this.list.rewardType !== null && this.list.address &&
+      this.list.details && this.list.jobType !== null  && this.list.hireNum && this.list.schoolId) {
         this.$axios.post('/merchant/job/dealJob.do', qs.stringify({
           action: actionNum,
           jobSummary: this.list.jobSummary,

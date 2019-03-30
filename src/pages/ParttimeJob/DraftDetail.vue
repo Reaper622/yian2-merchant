@@ -173,8 +173,8 @@ export default {
     // 编辑草稿之后，保存
     saveDraft () {
       let _this = this
-      if (this.list.jobSummary && this.list.jobTime && this.list.reward && this.list.rewardType && this.list.address &&
-      this.list.details && this.list.jobType && this.list.hireNum && this.list.schoolId) {
+      if (this.list.jobSummary && this.list.jobTime && this.list.reward && this.list.rewardType !== null && this.list.address &&
+      this.list.details && this.list.jobType !== null && this.list.hireNum && this.list.schoolId) {
         this.$axios.post('/merchant/job/saveJobInfo.do', qs.stringify({
           jobId: this.$route.params.id,
           jobSummary: this.list.jobSummary,
