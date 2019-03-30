@@ -3,64 +3,65 @@
     <m-header
     :title="'个人中心'"
     :isBack="true"></m-header>
-    <div class="logoContainer">
-      <div class="logo" :style="{backgroundImage:'url('+ require('@/assets/images/longLogo.png') +')'}">
-        <img src="" alt="">
+    <div class="content">
+      <div class="logoContainer">
+        <div class="logo" :style="{backgroundImage:'url('+ require('@/assets/images/longLogo.png') +')'}">
+        </div>
+        <div class="avatar-box">
+          <img :src="avatarLink" class="avatar" />
+        </div>
       </div>
-      <div class="avatar-box">
-        <img :src="avatarLink" class="avatar" />
+      <div class="thewrapper">
+        <div class="item border-bottom">
+          <router-link to="/personal/personalinfomation">
+            <div>
+              个人信息
+              <img class="mini-image" src="@/assets/images/1.png">
+            </div>
+          </router-link>
+        </div>
+        <div class="item border-bottom">
+          <router-link to="/personal/resetpsw">
+            <div>
+              账号安全
+              <img class="mini-image" src="@/assets/images/password.png">
+            </div>
+          </router-link>
+        </div>
+        <div class="item item-margin-bottom">
+          <router-link to="/personal/identification">
+            <div>
+              认证信息
+              <img class="mini-image2" src="@/assets/images/2.png">
+            </div>
+          </router-link>
+        </div>
+        <div class="item border-bottom">
+          <router-link to="/parttimejob/myparttimejob">
+            <div>
+              我的兼职
+              <img class="mini-image2" src="@/assets/images/3.png">
+            </div>
+          </router-link>
+        </div>
+        <div class="item border-bottom item-margin-bottom">
+          <router-link to="/evaluation">
+            <div>
+              我的评价
+              <img class="mini-image2" src="@/assets/images/5.png">
+            </div>
+          </router-link>
+        </div>
+        <div class="item">
+          <router-link to="/personal/contact">
+            <div>
+              评价与反馈
+              <img class="mini-image2" src="@/assets/images/6.png">
+            </div>
+          </router-link>
+        </div>
+        <div class="item logout" @click="logOut">注 销 登 录</div>
       </div>
-    </div>
-    <div class="thewrapper">
-      <div class="item border-bottom">
-        <router-link to="/personal/personalinfomation">
-          <div>
-            个人信息
-            <img class="mini-image" src="@/assets/images/1.png">
-          </div>
-        </router-link>
-      </div>
-      <div class="item border-bottom">
-        <router-link to="/personal/resetpsw">
-          <div>
-            账号安全
-            <img class="mini-image" src="@/assets/images/password.png">
-          </div>
-        </router-link>
-      </div>
-      <div class="item item-margin-bottom">
-        <router-link to="/personal/identification">
-          <div>
-            认证信息
-            <img class="mini-image2" src="@/assets/images/2.png">
-          </div>
-        </router-link>
-      </div>
-      <div class="item border-bottom">
-        <router-link to="/parttimejob/myparttimejob">
-          <div>
-            我的兼职
-            <img class="mini-image2" src="@/assets/images/3.png">
-          </div>
-        </router-link>
-      </div>
-      <div class="item border-bottom item-margin-bottom">
-        <router-link to="/evaluation">
-          <div>
-            我的评价
-            <img class="mini-image2" src="@/assets/images/5.png">
-          </div>
-        </router-link>
-      </div>
-      <div class="item">
-        <router-link to="/personal/contact">
-          <div>
-            评价与反馈
-            <img class="mini-image2" src="@/assets/images/6.png">
-          </div>
-        </router-link>
-      </div>
-      <div class="item logout" @click="logOut">注 销 登 录</div>
     </div>
   </div>
 </template>
@@ -110,60 +111,62 @@ export default {
 
 <style lang="stylus" scoped>
 @import '~@/assets/styles/varibles.styl'
-    .logoContainer
-      display flex
-      margin .5rem .26rem .36rem
-      background-color #ffffff
-      padding .8rem .4rem
-      border-radius .24rem
-      .logo
-        flex-grow 7
-        background-repeat no-repeat
-        background-size 100% 100%
-        -moz-background-size 100% 100%
-        height 1rem
-      .avatar-box
-        flex-grow 3
-        height 1rem
-        // background grey
-        position relative
-        .avatar
-          position absolute
-          left .4rem
-          top -0.3rem
-          width 1.6rem
-          height 1.6rem
-          border-radius .9rem
-          background-color #FFE1F1
-    .thewrapper
-      display flex
-      flex-direction column
-      justify-content center
-      // text-align center
-      a
-        color black
-      .item
-        position relative
-        padding .3rem 0 .3rem 1.4rem
-        background #ffffff
-        .mini-image
-          position absolute
-          left 0.44rem
-          bottom .2rem
-          width .44rem
-          height .48rem
-        .mini-image2
-          position absolute
-          left 0.44rem
-          bottom .22rem
-          width .44rem
-          height .44rem
-      .item-margin-bottom
-        margin-bottom .3rem
-      .logout
-        margin-top .3rem
-        padding .3rem 0
-        text-align center
-        color $color-danger
-        font-weight bold
+  .content
+    height auto
+    padding-bottom $tabbarHeight
+  .logoContainer
+    display flex
+    margin .5rem .26rem .36rem
+    background-color #ffffff
+    padding .8rem .4rem
+    border-radius .24rem
+    .logo
+      flex-grow 7
+      background-repeat no-repeat
+      background-size 100% 100%
+      -moz-background-size 100% 100%
+      height 1rem
+    .avatar-box
+      flex-grow 3
+      // background grey
+      position relative
+      .avatar
+        position absolute
+        left .3rem
+        top -0.3rem
+        width 1.6rem
+        height 1.6rem
+        border-radius .9rem
+        background-color #FFE1F1
+  .thewrapper
+    display flex
+    flex-direction column
+    justify-content center
+    // text-align center
+    a
+      color black
+    .item
+      position relative
+      padding .3rem 0 .3rem 1.4rem
+      background #ffffff
+      .mini-image
+        position absolute
+        left 0.44rem
+        bottom .2rem
+        width .44rem
+        height .48rem
+      .mini-image2
+        position absolute
+        left 0.44rem
+        bottom .22rem
+        width .44rem
+        height .44rem
+    .item-margin-bottom
+      margin-bottom .3rem
+    .logout
+      margin-top .3rem
+      padding .3rem 0
+      text-align center
+      color $color-danger
+      font-weight bold
 </style>
