@@ -84,8 +84,7 @@ export default {
   },
   mounted () {
     this.typeList = this.$store.getters.getJobTypeList
-    this.schoolList = this.$store.getters.getSchoolList
-    console.log(this.schoolList)
+    this.getSchoolAudited()
     let _this = this
     let mobileSelect4 = new MobileSelect({// eslint-disable-line
       trigger: '#trigger4',
@@ -120,28 +119,37 @@ export default {
         _this.list.jobType = data[0].id
       }
     })
-    let mobileSelect6 = new MobileSelect({// eslint-disable-line
-      trigger: '#trigger6',
-      title: '选择学校',
-      wheels: [
-        {data: _this.schoolList}
-      ],
-      keyMap: {
-        id: 'code',
-        value: 'name'
-      },
-      callback: function (indexArr, data) {
-        console.log(indexArr, data[0])
-        _this.list.schoolId = data[0].code
-      }
-    })
   },
   methods: {
+    // 获取已认证的学校列表
+    getSchoolAudited () {
+      this.$axios.get('/merchant/audit/getPassList.do')
+        .then(res => {
+          let _this = this
+          _this.schoolList = res.data.data
+          console.log(res.data.data)
+          let mobileSelect6 = new MobileSelect({// eslint-disable-line
+            trigger: '#trigger6',
+            title: '选择学校',
+            wheels: [
+              {data: _this.schoolList}
+            ],
+            keyMap: {
+              id: 'schoolId',
+              value: 'schoolName'
+            },
+            callback: function (indexArr, data) {
+              console.log(indexArr, data[0])
+              _this.list.schoolId = data[0].schoolId
+            }
+          })
+        })
+    },
     publish (actionNum) {
       console.log(this.list)
       let _this = this
       if (this.list.jobSummary && this.list.jobTime && this.list.reward && this.list.rewardType !== null && this.list.address &&
-      this.list.details && this.list.jobType !== null  && this.list.hireNum && this.list.schoolId) {
+      this.list.details && this.list.jobType !== null && this.list.hireNum && this.list.schoolId) {
         this.$axios.post('/merchant/job/dealJob.do', qs.stringify({
           action: actionNum,
           jobSummary: this.list.jobSummary,
