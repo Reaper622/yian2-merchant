@@ -6,34 +6,42 @@
       <div class="content">
         <floding-board
         :title="'待审核兼职'"
+        :num="numList.status_0"
         :content="waitToAuditJobs"
         @beClicked="toClick(0)"></floding-board>
         <floding-board
         :title="'展示中的兼职'"
+        :num="numList.status_1"
         :content="nowShowingJobs"
         @beClicked="toClick(1)"></floding-board>
         <floding-board
         :title="'未通过兼职'"
+        :num="numList.status_2"
         :content="noPassJobs"
         @beClicked="toClick(2)"></floding-board>
         <floding-board
         :title="'满员的兼职'"
+        :num="numList.status_3"
         :content="fullJobs"
         @beClicked="toClick(3)"></floding-board>
         <floding-board
         :title="'停止的兼职'"
+        :num="numList.status_4"
         :content="stopedJobs"
         @beClicked="toClick(4)"></floding-board>
         <floding-board
         :title="'进行中的兼职'"
+        :num="numList.status_5"
         :content="nowRunningJobs"
         @beClicked="toClick(5)"></floding-board>
         <floding-board
         :title="'待评价的兼职'"
+        :num="numList.status_6"
         :content="toEvaluateJobs"
         @beClicked="toClick(6)"></floding-board>
         <floding-board
         :title="'已完成的兼职'"
+        :num="numList.status_7"
         :content="finishedJobs"
         @beClicked="toClick(7)"></floding-board>
       </div>
@@ -65,7 +73,9 @@ export default {
       // 已完成的兼职
       finishedJobs: [],
       // 每种兼职是否被点击过
-      flags: [false, false, false, false, false, false, false, false]
+      flags: [false, false, false, false, false, false, false, false],
+      // 每种兼职的数量
+      numList: {}
     }
   },
   components: {
@@ -73,8 +83,23 @@ export default {
     FlodingBoard
   },
   mounted () {
+    this.getParttimejobNum()
   },
   methods: {
+    // 获取每种兼职的数量
+    getParttimejobNum () {
+      this.$axios.get('/merchant/job/getNumByStatus.do')
+        .then(res => {
+          console.log(res)
+          if (res.data.status === 1) {
+            this.numList = res.data.data
+          } else {
+            this.$layer.closeAll()
+            this.$layer.msg(res.data.msg)
+          }
+        })
+    },
+    // 点击事件
     toClick (num) {
       this.flags[num] = !this.flags[num]
       switch (num) {

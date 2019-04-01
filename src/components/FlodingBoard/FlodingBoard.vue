@@ -4,6 +4,9 @@
       <span class="titleText">
         {{this.title}}
       </span>
+      <span class="num">
+        {{this.num}}
+      </span>
       <p :class="isclicked?'iconAfterClick':'iconBeforeClick'" >
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-right"></use>
@@ -34,6 +37,10 @@ export default {
     title: {
       type: String,
       required: true
+    },
+    num: {
+      type: Number,
+      default: 0
     },
     // 内部展示内容数组
     content: {
@@ -93,6 +100,11 @@ export default {
       color $color-text
   .titleText
     font-size $font-size-large
+  .num
+    position relative
+    float right
+    right 1.2rem
+    font-size $font-size-medium
   .contentItem
     position relative
     width 90%
