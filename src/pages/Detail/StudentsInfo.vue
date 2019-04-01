@@ -9,7 +9,7 @@
     v-for="(student,index) in students"
     :key="index"
     :name="student.studentName"
-    :school="student.studentSchoolId"
+    :school="student.studentSchoolName"
     :contact="student.studentPhone"
     :studentId="student.studentId"
     :status="status"
