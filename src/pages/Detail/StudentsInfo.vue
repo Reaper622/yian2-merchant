@@ -3,7 +3,9 @@
     <m-header
     :title="'学生名单'"
     :isBack="true"></m-header>
-    <div class="exportList" @click="exportList" v-if="status != 8">导出名单</div>
+    <div class="exportList" @click="exportList" v-if="status != 8">
+      <img class="exportImg" src="@/assets/images/export.png" alt="" >
+      </div>
     <div class="exportList" @click="allGood" v-else>一键好评</div>
     <student-info
     v-for="(student,index) in students"
@@ -266,13 +268,15 @@ export default {
     right 0
     top 0
     z-index 10
-    width 2rem
+    width 1rem
     height $headerHeight
     line-height $headerHeight
-    background $color-warning
     color $color-text
     text-align center
     font-size $font-size-medium
+  .exportImg
+    heigth .88rem
+    width .88rem
   .cover
     position absolute
     top 0
