@@ -1,9 +1,17 @@
 <template>
   <div class="wrapper">
     <div class="contentArea">
-      <div class="panel name">{{name}}</div>
-      <div class="panel school">{{school}}</div>
-      <div class="panel contact">{{contact}}</div>
+      <div class="name">{{name}}</div>
+      <div class="infoArea">
+        <div class="panel school">
+          <img src="@/assets/images/school.png">
+          {{school}}
+          </div>
+        <div class="panel contact">
+          <img src="@/assets/images/phone.png">
+          {{contact}}
+          </div>
+      </div>
     </div>
     <div class="operationArea">
       <div class="btn checkEva" @click="checkEva">查看评价</div>
@@ -47,50 +55,51 @@ export default {
   .wrapper
     position relative
     width 90%
-    height 2.4rem
+    height 3rem
     margin .5rem 5%
-    background #E8EAED
+    background #ffffff
     border-radius .3rem
-  .contentArea
-    position absolute
-    width 70%
-    height 100%
-    .panel
-      width 90%
-      height .6rem
-      margin 0.15rem 5%
-      line-height .6rem
-      text-align center
-      color $color-text
-      border-radius .2rem
-      font-size $font-size-medium
+    box-shadow .05rem .05rem .08rem #E3E3E3
     .name
-      background $color-success
-    .school
-      background $color-warning
-    .contact
-      background $color-theme
+      position absolute
+      width 90%
+      margin 0 5%
+      height .6rem
+      line-height .6rem
+      font-size $font-size-medium-x
+      border-bottom 0.01rem solid black
+    .infoArea
+      position absolute
+      width 100%
+      top .9rem
+      height .8rem
+      line-height .8rem
+      .panel
+        position relative
+        display inline-block
+        width 45%
+        text-align center
+        img
+          height .8rem
   .operationArea
     position absolute
-    right 0
-    width 30%
-    height 100%
+    width 100%
+    top 2rem
+    display flex
+    justify-content space-around
     .btn
-      width 2rem
-      height 1rem
-      text-align center
-      line-height 1rem
-      color $color-text
-      font-size $font-size-medium-x
-      border-radius .3rem
-      overflow hidden
+      position relative
+      width 30%
+      height .8rem
       margin-top .1rem
-      margin-bottom .2rem
+      text-align center
+      border-radius .4rem
+      line-height .8rem
+      color #ffffff
+  .checkEva
+    background $color-theme
   .refuse
     background $color-danger
   .evaluate
-    background $color-success
-  .checkEva
-    background $color-theme
-    margin-bottom .1rem
+    background $color-warning
 </style>
