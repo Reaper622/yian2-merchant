@@ -31,17 +31,17 @@
         @beClicked="toClick(4)"></floding-board>
         <floding-board
         :title="'进行中的兼职'"
-        :num="numList.status_5"
+        :num="numList.status_7"
         :content="nowRunningJobs"
         @beClicked="toClick(5)"></floding-board>
         <floding-board
         :title="'待评价的兼职'"
-        :num="numList.status_6"
+        :num="numList.status_8"
         :content="toEvaluateJobs"
         @beClicked="toClick(6)"></floding-board>
         <floding-board
         :title="'已完成的兼职'"
-        :num="numList.status_7"
+        :num="numList.status_9"
         :content="finishedJobs"
         @beClicked="toClick(7)"></floding-board>
       </div>
