@@ -81,6 +81,7 @@ export default {
         text-align center
         img
           height .8rem
+          width 30%
   .operationArea
     position absolute
     width 100%
