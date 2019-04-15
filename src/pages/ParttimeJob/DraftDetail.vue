@@ -45,8 +45,8 @@
       </div>
       <hr>
       <div class="content-wrapper1">
-        <div class="item-title1">学校ID</div>
-        <input class="item-detail1" type="text" v-model="list.schoolId">
+        <div class="item-title1">学校</div>
+        <div id="trigger6" class="item-detail2" ref="schoolTrigger"></div>
       </div>
       <div class="buttonLine">
         <div class="btn" id="saveBtn" @click="saveDraft">
@@ -83,13 +83,15 @@ export default {
         details: '',
         jobType: null,
         hireNum: null,
-        schoolId: null
+        schoolId: null,
+        schoolName: null
       }
     }
   },
   mounted () {
     this.getInfo()
     this.getParttimeJobType()
+    this.getSchoolAudited()
     let _this = this
     let mobileSelect4 = new MobileSelect({// eslint-disable-line
       trigger: '#trigger4',
@@ -120,9 +122,14 @@ export default {
           if (res.data.status === 2000) {
             console.log(res.data.data)
             _this.list = res.data.data
+            let schoolNameList = this.$store.getters.getSchoolList
+            let arr = schoolNameList.filter(v => v.code === _this.list.schoolId)
+            console.log(arr)
+            _this.list.schoolName = arr[0].name
             // 在Trigger中展示数据
             _this.$refs.jobTypeTrigger.innerHTML = _this.getJobTypeName(res.data.data.jobType)
             _this.$refs.rewardTypeTrigger.innerHTML = res.data.data.rewardType
+            _this.$refs.schoolTrigger.innerHTML = _this.list.schoolName
           } else {
             _this.$layer.closeAll()
             _this.$layer.msg(res.data.msg)
@@ -256,9 +263,32 @@ export default {
       }, () => {
         console.log('取消删除')
       })
+    },
+    // 获取已认证的学校列表
+    getSchoolAudited () {
+      this.$axios.get('/merchant/audit/getPassList.do')
+        .then(res => {
+          let _this = this
+          _this.schoolList = res.data.data
+          console.log(res.data.data, 'it')
+          let mobileSelect6 = new MobileSelect({// eslint-disable-line
+            trigger: '#trigger6',
+            title: '选择学校',
+            wheels: [
+              {data: _this.schoolList}
+            ],
+            keyMap: {
+              id: 'schoolId',
+              value: 'schoolName'
+            },
+            callback: function (indexArr, data) {
+              console.log(indexArr, data[0])
+              _this.list.schoolId = data[0].schoolId
+            }
+          })
+        })
     }
   }
-
 }
 </script>
 
