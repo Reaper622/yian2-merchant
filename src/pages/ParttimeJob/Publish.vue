@@ -41,7 +41,7 @@
       <hr>
       <div class="content-wrapper1">
         <div class="item-title1">兼职详情</div>
-        <textarea class="item-detail1" cols="30" rows="3" v-model="list.details"></textarea>
+        <textarea class="textarea-detail" cols="25" rows="3" v-model="list.details"></textarea>
       </div>
       <hr>
       <div class="content-wrapper1">
@@ -218,4 +218,8 @@ export default {
     &:last-child
       background-color #43A964
       margin-top .4rem
+  .textarea-detail
+    font-size .3rem
+    margin-top .2rem
+    width 70%
 </style>
