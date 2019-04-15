@@ -21,6 +21,7 @@
     <!-- </scroll> -->
     <!-- <div class="totalNum">6</div> -->
     <div class="deleteAll" @click="deleteAll">删除所有</div>
+    <p v-show="isEmpty" class="tip">消息空空如也~</p>
   </div>
 </template>
 
@@ -38,7 +39,8 @@ export default {
       list: [],
       clientNum: {}, // 记录开始滑动（x1）,结束滑动（x2）的鼠标指针的位置
       candelete: {}, // 滑动的item
-      dotFlag: true
+      dotFlag: true,
+      isEmpty: false
     }
   },
   methods: {
@@ -66,6 +68,9 @@ export default {
         ret.push(obj)
       }
       this.list = ret
+      if (this.list.length === 0) {
+        this.isEmpty = true
+      }
     },
     deleteItem (index, item) {
       this.$axios.post('/message/delMessage.do', qs.stringify({
@@ -223,4 +228,8 @@ export default {
     font-size .2rem
     color #ffffff
     z-index 999
+  .tip
+    text-align center
+    color #cccccc
+    margin-top .2rem
 </style>
