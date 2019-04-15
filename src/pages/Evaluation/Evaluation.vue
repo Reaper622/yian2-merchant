@@ -23,8 +23,8 @@
         </div>
       </div>
       <div class="tab">
-        <div class="tab-item" :class="[isSelected ? activeItem: blankItem]" @click="tabLeftClick">Ta收到的</div>
-        <div class="tab-item" :class="[!isSelected ? activeItem: blankItem]" @click="tabRightClick">Ta发出的</div>
+        <div class="tab-item" :class="[isSelected ? activeItem: blankItem]" @click="tabLeftClick">我收到的</div>
+        <div class="tab-item" :class="[!isSelected ? activeItem: blankItem]" @click="tabRightClick">我发出的</div>
       </div>
       <div class="evaluation-wrapper">
         <evaluation-panel :evaluationList="activeList"></evaluation-panel>
