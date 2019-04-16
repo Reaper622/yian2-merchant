@@ -25,7 +25,7 @@ fasClick.attach(document.body)
 const store = createStore()
 
 // 设置Axios默认请求头
-Axios.defaults.baseURL = 'http://www.equator8848.xyz:8080/yian2'
+Axios.defaults.baseURL = 'https://www.equator8848.xyz/yian2'
 // 设置Axios携带凭证Cookie
 Axios.defaults.withCredentials = true
 Vue.prototype.$axios = Axios
@@ -37,6 +37,7 @@ router.beforeEach((to, from, next) => {
     next()
   } else {
     // 若未登录，前往登录页面
+    console.log(store.getters.getUser.uid)
     if (!store.getters.getUser.uid) {
       next('/login')
     } else { // 若已登录，跳转至目标地址
