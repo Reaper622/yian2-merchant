@@ -42,7 +42,7 @@ export default () => {
     },
     getters: {
       getUser (state) {
-        if (!state.user) {
+        if (!state.user.uid) {
           return JSON.parse(window.sessionStorage.getItem('user'))
         }
         return state.user
