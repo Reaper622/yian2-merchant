@@ -208,23 +208,22 @@ export default {
         }
       }
       commentContent += _this.comment
-      console.log(commentContent)
-      // this.$axios.post('/evaluate/evaluate.do', qs.stringify({
-      //   jobId: _this.$route.params.id,
-      //   toUserId: _this.evaluateStudentId,
-      //   content: commentContent,
-      //   level: _this.stars - 1
-      // }))
-      //   .then(res => {
-      //     if (res.data.status === 1) {
-      //       this.$layer.closeAll()
-      //       this.$layer.msg(res.data.msg)
-      //       this.isEvaluating = false
-      //     } else {
-      //       this.$layer.closeAll()
-      //       this.$layer.msg(res.data.msg)
-      //     }
-      //   })
+      this.$axios.post('/evaluate/evaluate.do', qs.stringify({
+        jobId: _this.$route.params.id,
+        toUserId: _this.evaluateStudentId,
+        content: commentContent,
+        level: _this.stars - 1
+      }))
+        .then(res => {
+          if (res.data.status === 1) {
+            this.$layer.closeAll()
+            this.$layer.msg(res.data.msg)
+            this.isEvaluating = false
+          } else {
+            this.$layer.closeAll()
+            this.$layer.msg(res.data.msg)
+          }
+        })
     },
     // 导出学生名单
     exportList () {
