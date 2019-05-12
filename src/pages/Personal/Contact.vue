@@ -10,7 +10,7 @@
     <div class="feedback">
       <textarea id="feedbackContent" placeholder="快来反馈意见吧..." maxlength="200" v-model="content" ></textarea>
     </div>
-    <div class="submit"  >提交</div>
+    <div class="submit"  @click="feedback">提交</div>
 
   </div>
 </template>
