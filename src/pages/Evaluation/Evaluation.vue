@@ -74,7 +74,7 @@ export default {
         pageSize: ''
       }))
         .then((res) => {
-          // console.log(res)
+          console.log(res)
           _this.inList = _this.normalizeList(res.data.data.list)
           _this.activeList = _this.inList
         })
@@ -86,7 +86,7 @@ export default {
         pageSize: ''
       }))
         .then((res) => {
-          // console.log(res)
+          console.log(res)
           _this.outList = _this.normalizeList(res.data.data.list)
           // console.log(_this.outList)
         })
