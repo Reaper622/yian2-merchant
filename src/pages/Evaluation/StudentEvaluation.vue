@@ -36,7 +36,6 @@
 <script>
 import MHeader from '@/components/MHeader/MHeader'
 import EvaluationPanel from '@/components/EvaluationPanel/EvaluationPanel'
-import qs from 'qs'
 export default {
   name: 'Evaluation',
   components: {
@@ -69,11 +68,13 @@ export default {
     },
     getOtherInEvaluation () {
       let _this = this
-      this.$axios.get('/evaluate/getOwnInEvaluation.do', qs.stringify({
-        userId: this.$route.params.id,
-        pageNum: '',
-        pageSize: ''
-      }))
+      this.$axios.get('/evaluate/getOtherInEvaluation.do', {
+        params: {
+          userId: this.$route.params.id,
+          pageNum: '',
+          pageSize: ''
+        }
+      })
         .then((res) => {
           // console.log(res)
           _this.inList = _this.normalizeList(res.data.data.list)
@@ -82,13 +83,15 @@ export default {
     },
     getOtherOutEvaluation () {
       let _this = this
-      this.$axios.get('/evaluate/getOwnOutEvaluation.do', qs.stringify({
-        userId: this.$route.params.id,
-        pageNum: '',
-        pageSize: ''
-      }))
+      this.$axios.get('/evaluate/getOtherOutEvaluation.do', {
+        params: {
+          userId: this.$route.params.id,
+          pageNum: '',
+          pageSize: ''
+        }
+      })
         .then((res) => {
-          // console.log(res)
+          console.log(res)
           _this.outList = _this.normalizeList(res.data.data.list)
           // console.log(_this.outList)
         })
