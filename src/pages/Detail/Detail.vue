@@ -123,7 +123,7 @@ export default {
           .then(res => {
             if (res.data.status === 2000) {
               this.$layer.closeAll()
-              this.$layer.msg('删除成功')
+              this.$layer.msg('成功停止')
               // 1秒后回到我的兼职页面
               setTimeout(() => {
                 this.$router.replace('/parttimejob/myparttimejob')
