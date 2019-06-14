@@ -26,7 +26,7 @@ export default () => {
         // 删除sessionStorage内存储的userId
         window.sessionStorage.removeItem('uid')
         window.sessionStorage.removeItem('user')
-        state.user = null
+        state.user = {}
       },
       userState (state, user) {
         state.user = user
