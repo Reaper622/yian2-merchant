@@ -268,7 +268,7 @@ export default {
     right 0
     top 0
     z-index 10
-    width 1rem
+    width 1.2rem
     height $headerHeight
     line-height $headerHeight
     color $color-text
