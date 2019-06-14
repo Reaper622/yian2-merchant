@@ -1,7 +1,7 @@
 <template>
   <!-- <transition name="slide"> -->
     <div class="wrapper">
-      <m-header :title="'消息详情'"></m-header>
+      <m-header :title="'消息详情'" isBack="true"></m-header>
       <div class="title">{{msgTitle}}</div>
       <div class="border-wrapper">
         <div class="content">{{content}}</div>
@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     getMessageDetail () {
-      this.axios.post('/message/getMessage.do', qs.stringify({
+      this.$axios.post('/message/getMessage.do', qs.stringify({
         messageId: this.$route.params.messageId
       }))
         .then((res) => {
@@ -55,7 +55,7 @@ export default {
   // .slide-enter, .slide-leave-to
   //   transform: translate3d(100%, 0, 0)
   .wrapper
-    margin 1.1rem 0 0
+    margin 0 0
     .title
       margin .3rem .2rem
       background #ffffff
