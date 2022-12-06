@@ -16,7 +16,7 @@
     "better-scroll": "^1.15.2",
     "fastclick": "^1.0.6",
     "mobile-select": "^1.1.2",
-    "qs": "^6.7.0",
+    "qs": "^6.7.3",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "vue": "^2.6.10",
